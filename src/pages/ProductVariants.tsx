@@ -14,7 +14,7 @@ export const ProductVariants = () => {
       <h1 className="text-3xl font-bold mb-8">{product.name} Variants</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {Object.entries(product.variants).map(([variant, prices]) => {
-          const minPrice = Math.min(...Object.values(prices));
+          const minPrice = Math.min(...Object.values(prices).map(price => Number(price)));
           return (
             <Card key={variant} className="hover:scale-105 transition-transform">
               <CardContent className="p-4">

@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { products } from "@/data/products";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,10 @@ export const ProductDetail = () => {
 
   const [totalPrice, setTotalPrice] = useState(0);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!product) return <div>Product not found</div>;
 
   const getProductSpecifications = () => {
@@ -54,6 +58,26 @@ export const ProductDetail = () => {
           "Wi-Fi Enabled: Optional",
           "Warranty: 1 Year Comprehensive",
         ];
+      case "room-heater":
+        return [
+          "Power Consumption: 1000W-2500W",
+          "Safety Features: Tip-over protection",
+          "Adjustable Thermostat: Yes",
+          "Heat Settings: Multiple",
+          "Portable Design: Yes",
+          "Quick Heating: Instant warmth",
+          "Warranty: 1 Year Manufacturer",
+        ];
+      case "geyser":
+        return [
+          "Capacity: 15L-20L",
+          "Heating Element: Copper",
+          "Safety Features: Multiple",
+          "Temperature Control: Yes",
+          "Installation: Free",
+          "Energy Rating: 5 Star",
+          "Warranty: 2 Years",
+        ];
       case "refrigerator":
         return [
           "Energy Rating: 4 Star",
@@ -62,6 +86,16 @@ export const ProductDetail = () => {
           "Toughened Glass Shelves",
           "LED Lighting",
           "Door Lock: Available",
+          "Warranty: 1 Year Comprehensive",
+        ];
+      case "washing-machine":
+        return [
+          "Wash Programs: Multiple",
+          "Energy Efficiency: High",
+          "Water Level Settings: Yes",
+          "Spin Speed: Adjustable",
+          "Child Lock: Available",
+          "Digital Display: Yes",
           "Warranty: 1 Year Comprehensive",
         ];
       default:
@@ -125,28 +159,21 @@ export const ProductDetail = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow container mx-auto px-4 py-16 mt-16">
-        <Card className="overflow-hidden">
-          <CardContent className="p-6">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-auto rounded-lg shadow-lg hover:animate-zoom"
-                />
-                <div className="prose max-w-none">
-                  <h2 className="text-2xl font-bold mb-4">Description</h2>
-                  <p className="text-gray-600">{product.description}</p>
+      <main className="flex-grow container mx-auto px-4 py-8 mt-16">
+        <Card className="overflow-hidden shadow-lg">
+          <CardContent className="p-8">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-8">
+                <div className="relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-auto rounded-lg shadow-md hover:animate-zoom"
+                  />
                 </div>
-              </div>
-
-              <div className="space-y-6">
-                <h1 className="text-3xl font-bold">{product.name}</h1>
-                
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <Select value={selectedMonth} onValueChange={handleMonthChange}>
-                    <SelectTrigger>
+                    <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select duration (months)" />
                     </SelectTrigger>
                     <SelectContent>
@@ -165,6 +192,7 @@ export const ProductDetail = () => {
                       min="1"
                       value={quantity}
                       onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+                      className="w-full"
                     />
                   </div>
 
@@ -180,7 +208,7 @@ export const ProductDetail = () => {
                   </div>
 
                   {totalPrice > 0 && (
-                    <div className="text-xl font-bold">
+                    <div className="text-2xl font-bold text-primary">
                       Total Price: ₹{totalPrice}
                     </div>
                   )}
@@ -202,12 +230,22 @@ export const ProductDetail = () => {
                     Proceed to Order
                   </Button>
                 </div>
+              </div>
 
-                <div className="mt-8">
+              <div className="space-y-8">
+                <div>
+                  <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+                  <p className="text-gray-600 text-lg">{product.description}</p>
+                </div>
+
+                <div>
                   <h2 className="text-2xl font-bold mb-4">Specifications</h2>
-                  <ul className="list-disc pl-5 space-y-2">
+                  <ul className="space-y-3">
                     {getProductSpecifications().map((spec, index) => (
-                      <li key={index} className="text-gray-600">{spec}</li>
+                      <li key={index} className="flex items-center text-gray-700">
+                        <span className="mr-2">•</span>
+                        {spec}
+                      </li>
                     ))}
                   </ul>
                 </div>
