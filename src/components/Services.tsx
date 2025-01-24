@@ -1,19 +1,19 @@
-import { Tool, Truck, Clock } from "lucide-react";
+import { ArrowRight, ArrowDown, ArrowUp } from "lucide-react";
 
 export const Services = () => {
   const services = [
     {
-      icon: Tool,
+      icon: ArrowRight,
       title: "Free Repairs",
       description: "24/7 repair service included"
     },
     {
-      icon: Truck,
+      icon: ArrowDown,
       title: "Free Delivery",
       description: "Doorstep delivery & installation"
     },
     {
-      icon: Clock,
+      icon: ArrowUp,
       title: "Flexible Duration",
       description: "Rent from 1 to 12 months"
     }

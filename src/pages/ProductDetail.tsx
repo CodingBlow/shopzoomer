@@ -17,11 +17,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 export const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const toast = useToast();
+  const { toast } = useToast();
   const product = products[id as keyof typeof products];
 
   const [selectedVariant, setSelectedVariant] = useState("");
@@ -52,15 +52,12 @@ export const ProductDetail = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Here you would integrate with Telegram
-    // For now, we'll just show a success message
     toast({
       title: "Success",
       description: "Your order has been placed successfully!",
     });
     
     setShowForm(false);
-    // Redirect to home after 2 seconds
     setTimeout(() => {
       window.location.href = "/";
     }, 2000);
