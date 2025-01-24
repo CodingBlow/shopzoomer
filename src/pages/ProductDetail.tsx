@@ -2,10 +2,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import { products } from "@/data/products";
 import { useState, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
 import { sendToTelegram } from "@/utils/telegram";
@@ -125,7 +136,7 @@ export const ProductDetail = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const orderData = {
       product: product.name,
       duration: selectedMonth,
@@ -149,7 +160,7 @@ export const ProductDetail = () => {
         variant: "destructive",
       });
     }
-    
+
     setShowForm(false);
     setTimeout(() => {
       navigate("/");
@@ -172,32 +183,43 @@ export const ProductDetail = () => {
                   />
                 </div>
                 <div className="space-y-6">
-                  <Select value={selectedMonth} onValueChange={handleMonthChange}>
+                  <Select
+                    value={selectedMonth}
+                    onValueChange={handleMonthChange}
+                  >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select duration (months)" />
                     </SelectTrigger>
                     <SelectContent>
-                      {Object.entries(Object.values(product.variants)[0]).map(([month, price]) => (
-                        <SelectItem key={month} value={month}>
-                          {month} months - ₹{price}/month
-                        </SelectItem>
-                      ))}
+                      {Object.entries(Object.values(product.variants)[0]).map(
+                        ([month, price]: [string, number]) => (
+                          <SelectItem key={month} value={month}>
+                            {month} months - ₹{price}/month
+                          </SelectItem>
+                        )
+                      )}
                     </SelectContent>
                   </Select>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Quantity</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Quantity
+                    </label>
                     <Input
                       type="number"
                       min="1"
                       value={quantity}
-                      onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+                      onChange={(e) =>
+                        handleQuantityChange(parseInt(e.target.value) || 1)
+                      }
                       className="w-full"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Delivery Date</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Delivery Date
+                    </label>
                     <Calendar
                       mode="single"
                       selected={deliveryDate}
@@ -213,7 +235,7 @@ export const ProductDetail = () => {
                     </div>
                   )}
 
-                  <Button 
+                  <Button
                     onClick={() => {
                       if (!selectedMonth || !deliveryDate) {
                         toast({
@@ -224,7 +246,7 @@ export const ProductDetail = () => {
                         return;
                       }
                       setShowForm(true);
-                    }} 
+                    }}
                     className="w-full"
                   >
                     Proceed to Order
@@ -242,7 +264,10 @@ export const ProductDetail = () => {
                   <h2 className="text-2xl font-bold mb-4">Specifications</h2>
                   <ul className="space-y-3">
                     {getProductSpecifications().map((spec, index) => (
-                      <li key={index} className="flex items-center text-gray-700">
+                      <li
+                        key={index}
+                        className="flex items-center text-gray-700"
+                      >
                         <span className="mr-2">•</span>
                         {spec}
                       </li>
@@ -282,7 +307,9 @@ export const ProductDetail = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Address</label>
+                <label className="block text-sm font-medium mb-2">
+                  Address
+                </label>
                 <Input
                   required
                   value={formData.address}

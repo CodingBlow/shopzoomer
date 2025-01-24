@@ -1,7 +1,7 @@
 export const products = {
   "window-ac": {
     name: "Window AC",
-    image: "/placeholder.svg",
+    image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
     description: "Energy-efficient window air conditioners for your comfort",
     variants: {
       "0.75 TON": {
@@ -44,7 +44,7 @@ export const products = {
   },
   "split-ac": {
     name: "Split AC",
-    image: "/placeholder.svg",
+    image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
     description: "Premium split air conditioners for efficient cooling",
     variants: {
       "1.0 TON": {
@@ -78,7 +78,7 @@ export const products = {
   },
   "room-heater": {
     name: "Room Heater",
-    image: "/placeholder.svg",
+    image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
     description: "Efficient room heaters for winter comfort",
     variants: {
       "9Fin": {
@@ -105,7 +105,7 @@ export const products = {
   },
   "geyser": {
     name: "Geyser",
-    image: "/placeholder.svg",
+    image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
     description: "Instant water heaters for your convenience",
     variants: {
       "15L - 20L": {
@@ -118,7 +118,7 @@ export const products = {
   },
   "refrigerator": {
     name: "Refrigerator",
-    image: "/placeholder.svg",
+    image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
     description: "Modern refrigerators for your kitchen",
     variants: {
       "150-220L": {
@@ -147,7 +147,7 @@ export const products = {
   },
   "washing-machine": {
     name: "Washing Machine",
-    image: "/placeholder.svg",
+    image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
     description: "Efficient washing machines for your laundry needs",
     variants: {
       "semi-automatic": {

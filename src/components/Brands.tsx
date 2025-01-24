@@ -9,9 +9,9 @@ export const Brands = () => {
   ];
 
   return (
-    <div className="py-16 bg-gray-50 overflow-hidden">
+    <div className="py-11 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Trusted Brands</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">Trusted Customer</h2>
         <div className="flex space-x-12 animate-slide-left">
           {brands.map((brand, index) => (
             <img
