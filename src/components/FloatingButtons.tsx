@@ -1,4 +1,4 @@
-import { Phone, WhatsApp } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 
 export const FloatingButtons = () => {
@@ -15,7 +15,7 @@ export const FloatingButtons = () => {
           size="icon"
           className="h-12 w-12 rounded-full bg-green-500 hover:bg-green-600 shadow-lg"
         >
-          <WhatsApp className="h-6 w-6" />
+          <MessageCircle className="h-6 w-6" />
         </Button>
       </a>
       <a
