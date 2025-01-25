@@ -1,6 +1,6 @@
 export const Hero = () => {
   return (
-    <div className="relative h-[50vh] md:h-70vh mt-8 md:mt-16">
+    <div className="relative h-[50vh] md:h-70vh mt-0 md:mt-16">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
