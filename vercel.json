@@ -1,10 +1,13 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "pages/**/*.js",
-        "use": "@vercel/node"
-      }
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "pages/**/*.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "pages/**/*.tsx",
+      "use": "@vercel/node"
+    }
+  ]
+}
