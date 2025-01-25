@@ -8,7 +8,8 @@ import { ProductDetail } from "./pages/ProductDetail";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ProductVariants } from "./pages/ProductVariants";
-import ScrollToTop from "./components/ScrollToTop"; // Import the ScrollToTop component
+import ScrollToTop from "./components/ScrollToTop";
+import { FloatingButtons } from "./components/FloatingButtons";
 
 const queryClient = new QueryClient();
 
@@ -18,20 +19,18 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop /> {/* Add ScrollToTop here */}
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route
-                path="/product/:id/variants"
-                element={<ProductVariants />}
-              />
+              <Route path="/product/:id/variants" element={<ProductVariants />} />
               <Route path="/product/:id/buy" element={<ProductDetail />} />
             </Routes>
           </main>
           <Footer />
+          <FloatingButtons />
         </div>
       </BrowserRouter>
     </TooltipProvider>

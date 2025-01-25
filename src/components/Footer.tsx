@@ -20,16 +20,17 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Products</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white">Air Conditioners</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Refrigerators</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Washing Machines</a></li>
+              <li><a href="/product/window-ac/variants" className="text-gray-300 hover:text-white">Window AC</a></li>
+              <li><a href="/product/split-ac/variants" className="text-gray-300 hover:text-white">Split AC</a></li>
+              <li><a href="/product/room-heater/variants" className="text-gray-300 hover:text-white">Oil Heater</a></li>
+              <li><a href="/product/geyser/variants" className="text-gray-300 hover:text-white">Geyser</a></li>
             </ul>
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-2 text-gray-300">
               <li>Email: contact@rentapp.com</li>
-              <li>Phone: +1 234 567 890</li>
+              <li>Phone: +91 8744982935</li>
               <li>Address: 123 Rent Street, City</li>
             </ul>
           </div>
