@@ -22,6 +22,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { sendToTelegram } from "@/utils/telegram";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 export const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -38,7 +42,7 @@ export const ProductDetail = () => {
     phone: "",
     address: "",
   });
-
+  const [showCalendar, setShowCalendar] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -174,7 +178,8 @@ export const ProductDetail = () => {
         <Card className="overflow-hidden shadow-lg">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-8">
+              {/* Left side - Product Image */}
+              <div>
                 <div className="relative">
                   <img
                     src={product.image}
@@ -182,98 +187,122 @@ export const ProductDetail = () => {
                     className="w-full h-auto rounded-lg shadow-md hover:animate-zoom"
                   />
                 </div>
-                <div className="space-y-6">
-                  <Select
-                    value={selectedMonth}
-                    onValueChange={handleMonthChange}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select duration (months)" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Object.entries(Object.values(product.variants)[0]).map(
-                        ([month, price]: [string, number]) => (
-                          <SelectItem key={month} value={month}>
-                            {month} months - ₹{price}/month
-                          </SelectItem>
-                        )
-                      )}
-                    </SelectContent>
-                  </Select>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Quantity
-                    </label>
-                    <Input
-                      type="number"
-                      min="1"
-                      value={quantity}
-                      onChange={(e) =>
-                        handleQuantityChange(parseInt(e.target.value) || 1)
-                      }
-                      className="w-full"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Delivery Date
-                    </label>
-                    <Calendar
-                      mode="single"
-                      selected={deliveryDate}
-                      onSelect={setDeliveryDate}
-                      className="rounded-md border"
-                      disabled={(date) => date < new Date()}
-                    />
-                  </div>
-
-                  {totalPrice > 0 && (
-                    <div className="text-2xl font-bold text-primary">
-                      Total Price: ₹{totalPrice}
-                    </div>
-                  )}
-
-                  <Button
-                    onClick={() => {
-                      if (!selectedMonth || !deliveryDate) {
-                        toast({
-                          title: "Error",
-                          description: "Please select all required options",
-                          variant: "destructive",
-                        });
-                        return;
-                      }
-                      setShowForm(true);
-                    }}
-                    className="w-full"
-                  >
-                    Proceed to Order
-                  </Button>
-                </div>
               </div>
 
+              {/* Right side - Buying Options */}
               <div className="space-y-8">
                 <div>
                   <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-                  <p className="text-gray-600 text-lg">{product.description}</p>
-                </div>
+                  <div className="space-y-6">
+                    <Select
+                      value={selectedMonth}
+                      onValueChange={handleMonthChange}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select duration (months)" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Object.entries(Object.values(product.variants)[0]).map(
+                          ([month, price]: [string, number]) => (
+                            <SelectItem key={month} value={month}>
+                              {month} months - ₹{price}/month
+                            </SelectItem>
+                          )
+                        )}
+                      </SelectContent>
+                    </Select>
 
-                <div>
-                  <h2 className="text-2xl font-bold mb-4">Specifications</h2>
-                  <ul className="space-y-3">
-                    {getProductSpecifications().map((spec, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center text-gray-700"
-                      >
-                        <span className="mr-2">•</span>
-                        {spec}
-                      </li>
-                    ))}
-                  </ul>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">
+                        Quantity
+                      </label>
+                      <Input
+                        type="number"
+                        min="1"
+                        value={quantity}
+                        onChange={(e) =>
+                          handleQuantityChange(parseInt(e.target.value) || 1)
+                        }
+                        className="w-full"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2">
+                        Delivery Date
+                      </label>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal",
+                              !deliveryDate && "text-muted-foreground"
+                            )}
+                          >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {deliveryDate ? (
+                              format(deliveryDate, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={deliveryDate}
+                            onSelect={setDeliveryDate}
+                            disabled={(date) => date < new Date()}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+
+                    {totalPrice > 0 && (
+                      <div className="text-2xl font-bold text-primary">
+                        Total Price: ₹{totalPrice}
+                      </div>
+                    )}
+
+                    <Button
+                      onClick={() => {
+                        if (!selectedMonth || !deliveryDate) {
+                          toast({
+                            title: "Error",
+                            description: "Please select all required options",
+                            variant: "destructive",
+                          });
+                          return;
+                        }
+                        setShowForm(true);
+                      }}
+                      className="w-full"
+                    >
+                      Proceed to Order
+                    </Button>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Product Description and Specifications */}
+            <div className="mt-12 grid md:grid-cols-2 gap-8">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Description</h2>
+                <p className="text-gray-600 text-lg">{product.description}</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Specifications</h2>
+                <ul className="space-y-3">
+                  {getProductSpecifications().map((spec, index) => (
+                    <li key={index} className="flex items-center text-gray-700">
+                      <span className="mr-2">•</span>
+                      {spec}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </CardContent>
@@ -307,9 +336,7 @@ export const ProductDetail = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">
-                  Address
-                </label>
+                <label className="block text-sm font-medium mb-2">Address</label>
                 <Input
                   required
                   value={formData.address}
