@@ -13,7 +13,7 @@ const Index = () => {
       <Services />
       <Products />
       <Brands />
-      <Footer />
+      
     </div>
   );
 };

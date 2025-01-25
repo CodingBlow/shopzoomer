@@ -1,11 +1,11 @@
 export const Brands = () => {
   const brands = [
-    "/placeholder.svg",
-    "/placeholder.svg",
-    "/placeholder.svg",
-    "/placeholder.svg",
-    "/placeholder.svg",
-    "/placeholder.svg",
+    "https://imgs.search.brave.com/eU08RsZCToLd2fIoElL7IntuMTyFlOpKFTHm6--lWmU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGVzaWduaGlsbC5j/b20vcmVzaXplX2lt/Zy5waHA_YXR5cD1w/YWdlX2ZpbGUmcHRo/PWZ0X2NhX2N0fHwy/NTl8fGNvbnRlc3Rm/aWxlXzUmZmxwPTE3/MTUzMTY1NDUtNTQy/NDI5NDA2NjYzZGE3/NDFkZTA2OTAtMjYw/MDM1NjkucG5n",
+    "https://imgs.search.brave.com/eU08RsZCToLd2fIoElL7IntuMTyFlOpKFTHm6--lWmU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGVzaWduaGlsbC5j/b20vcmVzaXplX2lt/Zy5waHA_YXR5cD1w/YWdlX2ZpbGUmcHRo/PWZ0X2NhX2N0fHwy/NTl8fGNvbnRlc3Rm/aWxlXzUmZmxwPTE3/MTUzMTY1NDUtNTQy/NDI5NDA2NjYzZGE3/NDFkZTA2OTAtMjYw/MDM1NjkucG5n",
+    "https://imgs.search.brave.com/eU08RsZCToLd2fIoElL7IntuMTyFlOpKFTHm6--lWmU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGVzaWduaGlsbC5j/b20vcmVzaXplX2lt/Zy5waHA_YXR5cD1w/YWdlX2ZpbGUmcHRo/PWZ0X2NhX2N0fHwy/NTl8fGNvbnRlc3Rm/aWxlXzUmZmxwPTE3/MTUzMTY1NDUtNTQy/NDI5NDA2NjYzZGE3/NDFkZTA2OTAtMjYw/MDM1NjkucG5n",
+    "https://imgs.search.brave.com/eU08RsZCToLd2fIoElL7IntuMTyFlOpKFTHm6--lWmU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGVzaWduaGlsbC5j/b20vcmVzaXplX2lt/Zy5waHA_YXR5cD1w/YWdlX2ZpbGUmcHRo/PWZ0X2NhX2N0fHwy/NTl8fGNvbnRlc3Rm/aWxlXzUmZmxwPTE3/MTUzMTY1NDUtNTQy/NDI5NDA2NjYzZGE3/NDFkZTA2OTAtMjYw/MDM1NjkucG5n",
+    "https://imgs.search.brave.com/eU08RsZCToLd2fIoElL7IntuMTyFlOpKFTHm6--lWmU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGVzaWduaGlsbC5j/b20vcmVzaXplX2lt/Zy5waHA_YXR5cD1w/YWdlX2ZpbGUmcHRo/PWZ0X2NhX2N0fHwy/NTl8fGNvbnRlc3Rm/aWxlXzUmZmxwPTE3/MTUzMTY1NDUtNTQy/NDI5NDA2NjYzZGE3/NDFkZTA2OTAtMjYw/MDM1NjkucG5n",
+    "https://imgs.search.brave.com/eU08RsZCToLd2fIoElL7IntuMTyFlOpKFTHm6--lWmU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGVzaWduaGlsbC5j/b20vcmVzaXplX2lt/Zy5waHA_YXR5cD1w/YWdlX2ZpbGUmcHRo/PWZ0X2NhX2N0fHwy/NTl8fGNvbnRlc3Rm/aWxlXzUmZmxwPTE3/MTUzMTY1NDUtNTQy/NDI5NDA2NjYzZGE3/NDFkZTA2OTAtMjYw/MDM1NjkucG5n",
   ];
 
   return (

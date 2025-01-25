@@ -22,7 +22,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { sendToTelegram } from "@/utils/telegram";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
@@ -184,7 +188,7 @@ export const ProductDetail = () => {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-auto rounded-lg shadow-md hover:animate-zoom"
+                    className="w-8/12 h-auto rounded-lg shadow-md hover:animate-zoom"
                   />
                 </div>
               </div>
@@ -336,7 +340,9 @@ export const ProductDetail = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Address</label>
+                <label className="block text-sm font-medium mb-2">
+                  Address
+                </label>
                 <Input
                   required
                   value={formData.address}
@@ -352,7 +358,6 @@ export const ProductDetail = () => {
           </DialogContent>
         </Dialog>
       </main>
-      <Footer />
     </div>
   );
 };
