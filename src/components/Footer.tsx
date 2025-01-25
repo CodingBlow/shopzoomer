@@ -1,3 +1,6 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 export const Footer = () => {
   return (
     <footer className="bg-primary text-white">
@@ -14,19 +17,19 @@ export const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="text-gray-300 hover:text-white">
+                <Link to="/" className="text-gray-300 hover:text-white">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="text-gray-300 hover:text-white">
+                <Link to="#products" className="text-gray-300 hover:text-white">
                   Products
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="text-gray-300 hover:text-white">
+                <Link to="#contact" className="text-gray-300 hover:text-white">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -34,36 +37,36 @@ export const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Products</h4>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="/product/window-ac/variants"
+                <Link
+                  to="/product/window-ac/variants"
                   className="text-gray-300 hover:text-white"
                 >
                   Window AC
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/product/split-ac/variants"
+                <Link
+                  to="/product/split-ac/variants"
                   className="text-gray-300 hover:text-white"
                 >
                   Split AC
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/product/room-heater/variants"
+                <Link
+                  to="/product/room-heater/variants"
                   className="text-gray-300 hover:text-white"
                 >
                   Oil Heater
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/product/geyser/variants"
+                <Link
+                  to="/product/geyser/variants"
                   className="text-gray-300 hover:text-white"
                 >
                   Geyser
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
