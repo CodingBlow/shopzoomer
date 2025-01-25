@@ -94,7 +94,7 @@ export const Services = () => {
   ];
 
   return (
-    <div className="py-8 bg-white">
+    <div className="py-5 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-center text-xl font-bold mb-6">Home Appliances On Rent In Gurgaon - Appliance Rental Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center border rounded-md p-4 shadow-sm">

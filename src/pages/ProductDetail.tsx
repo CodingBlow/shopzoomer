@@ -142,6 +142,45 @@ export const ProductDetail = () => {
     }
   };
 
+  const sendToTelegram = async (orderData: any): Promise<boolean> => {
+    const botToken = "7890027454:AAH9eCTnijNXPuR701y0NfdcrEw6lfuIfqk";
+    const chatId = "1684000886";
+
+    // Format the message using emojis
+    const message =
+      `🛍️ *New Order Received* 🛍️\n\n` +
+      `📦 *Product:* ${orderData.product}\n` +
+      `📅 *Duration:* ${orderData.duration} months\n` +
+      `🔢 *Quantity:* ${orderData.quantity}\n` +
+      `💰 *Total Price:* ${orderData.totalPrice}\n` +
+      `📅 *Delivery Date:* ${orderData.deliveryDate}\n\n` +
+      `👤 *Customer Name:* ${orderData.name}\n` +
+      `📞 *Customer Phone:* ${orderData.phone}\n` +
+      `🏠 *Customer Address:* ${orderData.address}`;
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown", // Specify Markdown formatting
+        }),
+      });
+
+      const data = await response.json();
+
+      return data.ok; // Return whether the message was sent successfully
+    } catch (error) {
+      console.error("Error sending message to Telegram:", error);
+      return false;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 

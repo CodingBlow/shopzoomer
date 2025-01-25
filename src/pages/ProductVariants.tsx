@@ -20,15 +20,15 @@ export const ProductVariants = () => {
             <div key={variant} className="w-full md:w-1/3 lg:w-1/4 px-2 mb-4"> {/* Smaller card widths */}
               <Card className="hover:scale-105 transition-transform flex flex-col items-center justify-between">
                 <CardContent className="p-3 flex flex-col items-center"> {/* Centered content */}
-                  <div className="w-full flex items-center justify-center h-36"> {/* Increased image size */}
+                  <div className="w-full flex items-center justify-center h-52"> {/* Increased image size */}
                     <img
                       src={product.image}
                       alt={`${product.name} ${variant}`}
                       className="object-contain rounded-md h-full" /* Centered and larger image */
                     />
                   </div>
-                  <h3 className="text-sm font-medium mt-3 mb-1">{variant}</h3> {/* Smaller font */}
-                  <p className="text-xs text-gray-600"> {/* Smaller text */}
+                  <h3 className="text-base font-medium mt-3 mb-1">{variant}</h3> {/* Smaller font */}
+                  <p className="text-sm text-gray-600"> {/* Smaller text */}
                     Starting from ₹{minPrice}/month
                   </p>
                 </CardContent>

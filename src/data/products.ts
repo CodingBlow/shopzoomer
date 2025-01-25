@@ -2,7 +2,7 @@ export const products = {
   "window-ac": {
     name: "Window AC",
     image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
-    description: "Energy-efficient window air conditioners for your comfort",
+    description: "Energy-efficient window air conditioners designed to provide optimal cooling while saving on electricity costs. Perfect for homes, offices, and small spaces, these units combine compact design with powerful performance to keep you cool even during the hottest days. Equipped with advanced features such as adjustable cooling modes, eco-friendly refrigerants, and quiet operation, these ACs ensure comfort without compromise. Enjoy a hassle-free rental experience with flexible plans tailored to suit your needs.",
     variants: {
       "0.75 TON": {
         "3": 8656,
@@ -45,7 +45,7 @@ export const products = {
   "split-ac": {
     name: "Split AC",
     image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
-    description: "Premium split air conditioners for efficient cooling",
+    description: "Premium split air conditioners designed for efficient and uniform cooling, ensuring comfort in every corner of your space. These ACs combine sleek, modern designs with advanced technology to deliver superior performance while maintaining energy efficiency. Ideal for homes, offices, and large rooms, they come equipped with features like smart temperature controls, inverter technology for energy savings, and whisper-quiet operation. Experience a luxurious cooling experience with eco-friendly refrigerants, long-lasting durability, and easy maintenance. Flexible rental plans make these high-performance ACs accessible for everyone, giving you the perfect balance of comfort and convenience.",
     variants: {
       "1.0 TON": {
         "3": 10749,
@@ -79,7 +79,7 @@ export const products = {
   "room-heater": {
     name: "Room Heater",
     image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
-    description: "Efficient room heaters for winter comfort",
+    description: "Efficient room heaters designed to keep you warm and cozy during the chilly winter months. These heaters offer rapid and even heating, ensuring a comfortable environment in your home or office. With advanced safety features like overheat protection and tip-over switches, they provide peace of mind while in use. Compact and portable, they are perfect for any room size and blend seamlessly with your decor. Enjoy energy-efficient performance, adjustable temperature controls, and whisper-quiet operation for a hassle-free experience. Flexible rental plans make it easy to stay warm without a long-term commitment.",
     variants: {
       "9Fin": {
         "1": 2750,
@@ -106,7 +106,7 @@ export const products = {
   "geyser": {
     name: "Geyser",
     image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
-    description: "Instant water heaters for your convenience",
+    description: "Instant water heaters designed to provide hot water on demand, ensuring maximum convenience and efficiency. Perfect for homes, apartments, and offices, these compact units heat water in seconds, saving you time and energy. Built with advanced safety features like automatic shut-off, thermal protection, and corrosion-resistant tanks, they guarantee safe and reliable operation. Enjoy energy-efficient performance, sleek designs that fit any space, and hassle-free installation. Whether for quick showers or kitchen use, these water heaters offer unmatched convenience and comfort. Flexible rental plans make it easy to access hot water whenever you need it.",
     variants: {
       "15L - 20L": {
         "2": 2750,
@@ -119,7 +119,7 @@ export const products = {
   "refrigerator": {
     name: "Refrigerator",
     image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
-    description: "Modern refrigerators for your kitchen",
+    description: "Modern refrigerators designed to enhance your kitchen with style, efficiency, and functionality. These refrigerators offer spacious storage, innovative cooling technology, and energy-efficient performance to keep your food fresh for longer. With features like adjustable shelves, frost-free operation, and smart temperature controls, they cater to all your refrigeration needs. Sleek and durable, they complement any kitchen decor while ensuring reliable performance. Ideal for homes, offices, or commercial spaces, these refrigerators combine convenience with advanced technology. Flexible rental plans make upgrading to a modern refrigerator both affordable and hassle-free.",
     variants: {
       "150-220L": {
         "4": 4048,
@@ -148,7 +148,7 @@ export const products = {
   "washing-machine": {
     name: "Washing Machine",
     image: "https://www.coolcareservice.in/image/cache/catalog/11-heater-600x600.jpg",
-    description: "Efficient washing machines for your laundry needs",
+    description: "Efficient washing machines designed to make your laundry experience effortless and convenient. These machines combine advanced cleaning technology with energy-efficient performance to deliver spotless results while saving water and electricity. Featuring multiple wash programs, quick wash options, and user-friendly controls, they cater to all fabric types and laundry needs. Durable and stylish, these washing machines are perfect for homes, apartments, and even commercial spaces. With low noise operation, large capacities, and modern designs, they ensure a seamless blend of functionality and aesthetics. Flexible rental plans make upgrading to an efficient washing machine both easy and affordable.",
     variants: {
       "semi-automatic": {
         "4": 3542,

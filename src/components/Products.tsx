@@ -11,7 +11,7 @@ export const Products = () => {
           <Link key={id} to={`/product/${id}/variants`}>
             <Card className="cursor-pointer transition-transform hover:scale-105 shadow-md">
               <CardContent className="p-4">
-                <div className="w-full h-32 md:h-36 overflow-hidden rounded-md mb-4">
+                <div className="w-full h-32 md:h-40 overflow-hidden rounded-md mb-4">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -19,7 +19,7 @@ export const Products = () => {
                   />
                 </div>
                 <h3 className="text-lg font-semibold mb-1 text-gray-800">{product.name}</h3>
-                <p className="text-sm text-gray-600">{product.description}</p>
+                {/* <p className="text-sm text-gray-600">{product.description}</p> */}
               </CardContent>
             </Card>
           </Link>
