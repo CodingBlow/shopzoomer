@@ -18,6 +18,7 @@ import WM2 from "../images/WM2.jpg";
 export const products = {
   "window-ac": {
     name: "Window AC",
+    image: Window,
     variants: {
       "1.0 TON": {
         image: Window,
@@ -54,6 +55,7 @@ export const products = {
   },
   "split-ac": {
     name: "Split AC",
+    image: SAC,
     variants: {
       "1.0 TON": {
         image: SAC,
@@ -90,6 +92,7 @@ export const products = {
   },
   "room-heater": {
     name: "Room Heater",
+    image: ORH,
     variants: {
       "9Fin": {
         image: ORH,
@@ -114,6 +117,7 @@ export const products = {
   },
   "geyser": {
     name: "Geyser",
+    image: Geyser,
     variants: {
       "15L - 20L": {
         image: Geyser,
@@ -127,6 +131,7 @@ export const products = {
   },
   "refrigerator": {
     name: "Refrigerator",
+    image: Ref,
     variants: {
       "150-220L": {
         image: Ref,
@@ -157,6 +162,7 @@ export const products = {
   },
   "washing-machine": {
     name: "Washing Machine",
+    image: WM,
     variants: {
       "semi-automatic": {
         image: WM,
