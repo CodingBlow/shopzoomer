@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../images/hr logo copy.jpg";
 
 export const Footer = () => {
   return (
@@ -7,7 +8,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">RentApp</h3>
+            <img src={logo} alt="Hindustan Rent Logo" className="h-12 mb-4" />
             <p className="text-gray-300">
               Premium appliances on rent with hassle-free service and
               maintenance.
@@ -73,14 +74,23 @@ export const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-2 text-gray-300">
-              <li>Email: contact@rentapp.com</li>
-              <li>Phone: +91 9306174774</li>
-              <li>Address: 123 Rent Street, City</li>
+              <li>Email: Hindustanrent@gmail.com</li>
+              <li>Phone: +91 7419011361</li>
+              <li>Address: Gurugram</li>
             </ul>
           </div>
         </div>
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; 2024 RentApp. All rights reserved.</p>
+          <p>&copy; 2024 Hindustan Rent. All rights reserved.</p>
+          <p>
+            Designed by{" "}
+            <a
+              href="https://www.zuridox.com"
+              className="text-green-800 hover:underline"
+            >
+              Zuridox
+            </a>
+          </p>
         </div>
       </div>
     </footer>

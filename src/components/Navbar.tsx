@@ -77,12 +77,12 @@ export const Navbar = () => {
             className="flex items-center px-2 lg:px-4 py-2 text-sm lg:text-base text-gray-700 font-medium hover:text-primary"
           >
             <Phone className="h-4 w-4 lg:h-5 lg:w-5 mr-2" />
-            <span className="hidden lg:inline">+91-9306174774</span>
+            <span className="hidden lg:inline">+917419011361</span>
           </Link>
 
           {/* WhatsApp Button */}
           <Link
-            to="https://wa.me/919306174774"
+            to="https://wa.me/917419011361"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -141,14 +141,14 @@ export const Navbar = () => {
                   Geyser
                 </Link>
                 <Link
-                  to="tel:+919306174774"
+                  to="tel:+917419011361"
                   className="text-base text-gray-800 hover:text-primary font-medium flex items-center"
                 >
                   <Phone className="h-4 w-4 mr-2" />
-                  +91-9306174774
+                  +917419011361
                 </Link>
                 <Link
-                  to="https://wa.me/919306174774"
+                  to="https://wa.me/917419011361"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-base text-green-600 hover:text-green-800 font-medium"
