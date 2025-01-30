@@ -12,29 +12,29 @@ export const ProductVariants = () => {
   return (
     <div className="container mx-auto px-4 py-16 mt-16">
       <h1 className="text-2xl font-bold mb-8">{product.name} Variants</h1>
-      {/* Flexbox layout */}
-      <div className="flex flex-wrap -mx-2"> {/* Removes horizontal gap */}
-        {Object.entries(product.variants).map(([variant, prices]) => {
-          const minPrice = Math.min(...Object.values(prices).map(price => Number(price)));
+      <div className="flex flex-wrap -mx-2">
+        {Object.entries(product.variants).map(([variant, data]) => {
+          const prices = Object.entries(data).filter(([key]) => key !== 'image');
+          const minPrice = Math.min(...prices.map(([_, price]) => Number(price)));
           return (
-            <div key={variant} className="w-full md:w-1/3 lg:w-1/4 px-2 mb-4"> {/* Smaller card widths */}
+            <div key={variant} className="w-full md:w-1/3 lg:w-1/4 px-2 mb-4">
               <Card className="hover:scale-105 transition-transform flex flex-col items-center justify-between">
-                <CardContent className="p-3 flex flex-col items-center"> {/* Centered content */}
-                  <div className="w-full flex items-center justify-center h-52"> {/* Increased image size */}
+                <CardContent className="p-3 flex flex-col items-center">
+                  <div className="w-full flex items-center justify-center h-52">
                     <img
-                      src={product.image}
+                      src={data.image}
                       alt={`${product.name} ${variant}`}
-                      className="object-contain rounded-md h-full" /* Centered and larger image */
+                      className="object-contain rounded-md h-full"
                     />
                   </div>
-                  <h3 className="text-base font-medium mt-3 mb-1">{variant}</h3> {/* Smaller font */}
-                  <p className="text-sm text-gray-600"> {/* Smaller text */}
+                  <h3 className="text-base font-medium mt-3 mb-1">{variant}</h3>
+                  <p className="text-sm text-gray-600">
                     Starting from ₹{minPrice}/month
                   </p>
                 </CardContent>
                 <CardFooter className="p-2">
                   <Link to={`/product/${id}/buy?variant=${variant}`} className="w-full">
-                    <Button className="w-full text-xs py-1"> {/* Smaller button */}
+                    <Button className="w-full text-xs py-1">
                       Rent Now
                     </Button>
                   </Link>
