@@ -241,7 +241,7 @@ export const ProductDetail = () => {
                   <img
                     src={variantImage}
                     alt={product.name}
-                    className="w-full h-auto rounded-lg shadow-md hover:animate-zoom"
+                    className="w-90 h-auto rounded-lg shadow-md hover:animate-zoom"
                   />
                 </div>
               </div>
