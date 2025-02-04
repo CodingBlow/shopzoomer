@@ -30,6 +30,12 @@ import {
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -329,24 +335,105 @@ export const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Product Description and Specifications */}
-            <div className="mt-12 grid md:grid-cols-2 gap-8">
-              <div>
-                <h2 className="text-2xl font-bold mb-4">Description</h2>
-                <p className="text-gray-600 text-lg">{product.description}</p>
-              </div>
+            {/* Product Description and Details */}
+            <div className="mt-12">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="description">
+                  <AccordionTrigger className="text-xl font-semibold">
+                    Description of Hindustan Rent
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4">
+                    <div className="space-y-2">
+                      <h3 className="font-semibold">Star Rating</h3>
+                      <p>3, 4 & 5 Star as per stock availability</p>
+                    </div>
 
-              <div>
-                <h2 className="text-2xl font-bold mb-4">Specifications</h2>
-                <ul className="space-y-3">
-                  {getProductSpecifications().map((spec, index) => (
-                    <li key={index} className="flex items-center text-gray-700">
-                      <span className="mr-2">•</span>
-                      {spec}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                    <div className="space-y-2">
+                      <h3 className="font-semibold">Product Condition</h3>
+                      <p>Its used but looks like new condition, it will be in Excellent working condition.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h3 className="font-semibold">Brand</h3>
+                      <p>All products will be branded as per market. Brand and Color may vary as per stock availability.</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="payment">
+                  <AccordionTrigger className="text-xl font-semibold">
+                    Payment Policy
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4">
+                    <div className="space-y-2">
+                      <p>The Rent, Security deposit amount and other charges has to be paid in full at the time of installation/delivery of products.</p>
+                      
+                      <h3 className="font-semibold mt-4">Mode of Payment</h3>
+                      <p>Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc.</p>
+                      
+                      <h3 className="font-semibold mt-4">Security Deposit</h3>
+                      <p>Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup.</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="documentation">
+                  <AccordionTrigger className="text-xl font-semibold">
+                    Documentation Required
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Aadhar card submission must for everyone</li>
+                      <li>Any two from: Govt ID card, Bank statement, Company name, GST number, DL Selfie etc</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="delivery">
+                  <AccordionTrigger className="text-xl font-semibold">
+                    Delivery & Pickup Policy
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-4">
+                    <div className="space-y-2">
+                      <h3 className="font-semibold">Delivery</h3>
+                      <p>Customer or their representative must be present at the agreed date and time for getting Items checked in good condition.</p>
+                      
+                      <h3 className="font-semibold mt-4">Pick-Up</h3>
+                      <ul className="list-disc pl-5 space-y-2">
+                        <li>Customer must inform us minimum 3 Days prior to pick-up</li>
+                        <li>Pick-up date and time will be mutually decided</li>
+                        <li>Customer must be present during the handover/return</li>
+                      </ul>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="maintenance">
+                  <AccordionTrigger className="text-xl font-semibold">
+                    Maintenance Policy
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p>Repair and Maintenance of products will be on "Hindustan rent" with free of Cost during the entire season/rented time</p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="terms">
+                  <AccordionTrigger className="text-xl font-semibold">
+                    General Terms
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>It is not allowed to shift the rented item to another location</li>
+                      <li>Customer cannot transfer "Hindustan rent" Items to another person</li>
+                      <li>Electric sub meter charge Rs. 1,000/-, if required</li>
+                      <li>Extra Copper piping charge Rs. 300/- per feet if need extra as per guide</li>
+                      <li>Electric power Requirement: AC 240V, with pre installed power plug of 16 Amp is must near AC installation location</li>
+                      <li>Stabilizer rental will be extra Rs.1,000/-, If required</li>
+                      <li>All the Electricity part and electrical fitting as well as wooden/other work would be done at Customer's end only</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </CardContent>
         </Card>
@@ -397,6 +484,7 @@ export const ProductDetail = () => {
           </DialogContent>
         </Dialog>
       </main>
+      <Footer />
     </div>
   );
 };
