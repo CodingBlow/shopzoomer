@@ -150,6 +150,7 @@ export const products = {
       ]
     }
   },
+
   "room-heater": {
     name: "Room Heater",
     image: ORHM,
@@ -175,16 +176,25 @@ export const products = {
     },
     description: {
       starRating: "ISI marked quality heaters",
-      condition: "Its used but looks like new condition, it will be in Excellent working condition",
+      condition: "Oil Room heater, also known as an Oil-filled radiator(OFR) & Tower Heater. Constructed as thin fins, available in 9FINs, 11FINs, 13FINs configurations.",
       brand: "All heaters will be branded as per market. Brand and Color may vary as per stock availability",
-      payment: "The Rent and Security deposit amount has to be paid in full at the time of delivery",
+      features: [
+        "Negligible sound production for peaceful sleep",
+        "Retains heat for long after turning off due to heating oil",
+        "Energy efficient, saving electricity with prolonged heat retention",
+        "Effective heating for larger rooms",
+        "Maintains ideal temperature throughout the room",
+        "Best placed in a central spot for natural heat circulation",
+        "More effective in rooms with doors than open spaces"
+      ],
+      payment: "One time advance payment applicable",
       paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
-      securityDeposit: "Security deposit Rs. 1,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      securityDeposit: "Security deposit Rs. 1,999/-(refundable) will be extra",
       documentation: [
         "Aadhar card submission must for everyone",
         "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
       ],
-      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      delivery: "Customer must be present during delivery for product inspection and condition verification",
       pickup: [
         "Customer must inform us minimum 3 Days prior to pick-up",
         "Pick-up date and time will be mutually decided",
@@ -194,12 +204,15 @@ export const products = {
       terms: [
         "It is not allowed to shift the heater to another location",
         "Customer cannot transfer Hindustan rent Items to another person",
+        "Any damages incurred due to accidents are not acceptable",
+        "Heaters are only for rent, not for sale",
+        "Electric power requirement: AC 230V, with pre-installed power plug of 16 Amp near heater location",
         "Proper earthing is required for safe operation",
-        "All electrical connections must be properly secured",
-        "Use only in dry conditions and keep away from water"
+        "All electrical connections must be properly secured"
       ]
     }
   },
+
   "geyser": {
     name: "Geyser",
     image: GeyserM,
