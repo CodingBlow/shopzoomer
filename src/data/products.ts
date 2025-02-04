@@ -57,7 +57,34 @@ export const products = {
         "12": 12748,
       },
     },
-    description: "Energy-efficient window air conditioners designed to provide optimal cooling while saving on electricity costs. Perfect for homes, offices, and small spaces, these units combine compact design with powerful performance to keep you cool even during the hottest days. Equipped with advanced features such as adjustable cooling modes, eco-friendly refrigerants, and quiet operation, these ACs ensure comfort without compromise. Enjoy a hassle-free rental experience with flexible plans tailored to suit your needs.",
+    description: {
+      starRating: "3, 4 & 5 Star as per stock availability",
+      condition: "Its used but looks like new condition, it will be in Excellent working condition",
+      brand: "All Window ACs will be branded as per market. Brand and Color may vary as per stock availability",
+      payment: "The Rent, Security deposit amount and other charges has to be paid in full at the time of installation/delivery of products",
+      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit: "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      documentation: [
+        "Aadhar card submission must for everyone",
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+      ],
+      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      pickup: [
+        "Customer must inform us minimum 3 Days prior to pick-up",
+        "Pick-up date and time will be mutually decided",
+        "Customer must be present during the handover/return"
+      ],
+      maintenance: "Repair and Maintenance of Window AC will be on Hindustan rent with free of Cost during the entire season/rented time",
+      terms: [
+        "It is not allowed to shift the AC to another location",
+        "Customer cannot transfer Hindustan rent Items to another person",
+        "Electric sub meter charge Rs. 1,000/-, if required",
+        "Extra Copper piping charge Rs. 300/- per feet if needed extra as per guide",
+        "Electric power Requirement: AC 240V, with pre installed power plug of 16 Amp is must near AC installation location",
+        "Stabilizer rental will be extra Rs.1,000/-, If required",
+        "All the Electricity part and electrical fitting as well as wooden/other work would be done at Customer's end only"
+      ]
+    }
   },
   "split-ac": {
     name: "Split AC",
@@ -94,7 +121,34 @@ export const products = {
         "12": 16712,
       },
     },
-    description: "Premium split air conditioners designed for efficient and uniform cooling, ensuring comfort in every corner of your space. These ACs combine sleek, modern designs with advanced technology to deliver superior performance while maintaining energy efficiency. Ideal for homes, offices, and large rooms, they come equipped with features like smart temperature controls, inverter technology for energy savings, and whisper-quiet operation. Experience a luxurious cooling experience with eco-friendly refrigerants, long-lasting durability, and easy maintenance. Flexible rental plans make these high-performance ACs accessible for everyone, giving you the perfect balance of comfort and convenience.",
+    description: {
+      starRating: "3, 4 & 5 Star as per stock availability",
+      condition: "Its used but looks like new condition, it will be in Excellent working condition with both indoor and outdoor units",
+      brand: "All Split ACs will be branded as per market. Brand and Color may vary as per stock availability",
+      payment: "The Rent, Security deposit amount and other charges has to be paid in full at the time of installation/delivery of products",
+      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit: "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      documentation: [
+        "Aadhar card submission must for everyone",
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+      ],
+      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      pickup: [
+        "Customer must inform us minimum 3 Days prior to pick-up",
+        "Pick-up date and time will be mutually decided",
+        "Customer must be present during the handover/return"
+      ],
+      maintenance: "Repair and Maintenance of Split AC will be on Hindustan rent with free of Cost during the entire season/rented time",
+      terms: [
+        "It is not allowed to shift the AC to another location",
+        "Customer cannot transfer Hindustan rent Items to another person",
+        "Electric sub meter charge Rs. 1,000/-, if required",
+        "Copper piping up to 3 meters included, extra length charged at Rs. 300/- per feet",
+        "Electric power Requirement: AC 240V, with pre installed power plug of 16 Amp is must near AC installation location",
+        "Stabilizer rental will be extra Rs.1,000/-, If required",
+        "All the Electricity part and electrical fitting as well as wooden/other work would be done at Customer's end only"
+      ]
+    }
   },
   "room-heater": {
     name: "Room Heater",
@@ -119,7 +173,32 @@ export const products = {
         "3": 5060,
       },
     },
-    description: "Efficient room heaters designed to keep you warm and cozy during the chilly winter months. These heaters offer rapid and even heating, ensuring a comfortable environment in your home or office. With advanced safety features like overheat protection and tip-over switches, they provide peace of mind while in use. Compact and portable, they are perfect for any room size and blend seamlessly with your decor. Enjoy energy-efficient performance, adjustable temperature controls, and whisper-quiet operation for a hassle-free experience. Flexible rental plans make it easy to stay warm without a long-term commitment.",
+    description: {
+      starRating: "ISI marked quality heaters",
+      condition: "Its used but looks like new condition, it will be in Excellent working condition",
+      brand: "All heaters will be branded as per market. Brand and Color may vary as per stock availability",
+      payment: "The Rent and Security deposit amount has to be paid in full at the time of delivery",
+      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit: "Security deposit Rs. 1,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      documentation: [
+        "Aadhar card submission must for everyone",
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+      ],
+      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      pickup: [
+        "Customer must inform us minimum 3 Days prior to pick-up",
+        "Pick-up date and time will be mutually decided",
+        "Customer must be present during the handover/return"
+      ],
+      maintenance: "Repair and Maintenance of heater will be on Hindustan rent with free of Cost during the entire season/rented time",
+      terms: [
+        "It is not allowed to shift the heater to another location",
+        "Customer cannot transfer Hindustan rent Items to another person",
+        "Proper earthing is required for safe operation",
+        "All electrical connections must be properly secured",
+        "Use only in dry conditions and keep away from water"
+      ]
+    }
   },
   "geyser": {
     name: "Geyser",
@@ -133,7 +212,33 @@ export const products = {
         "5": 3301,
       },
     },
-    description: "Instant water heaters designed to provide hot water on demand, ensuring maximum convenience and efficiency. Perfect for homes, apartments, and offices, these compact units heat water in seconds, saving you time and energy. Built with advanced safety features like automatic shut-off, thermal protection, and corrosion-resistant tanks, they guarantee safe and reliable operation. Enjoy energy-efficient performance, sleek designs that fit any space, and hassle-free installation. Whether for quick showers or kitchen use, these water heaters offer unmatched convenience and comfort. Flexible rental plans make it easy to access hot water whenever you need it.",
+    description: {
+      starRating: "5 Star rated energy efficient geysers",
+      condition: "Its used but looks like new condition, it will be in Excellent working condition",
+      brand: "All geysers will be branded as per market. Brand and Color may vary as per stock availability",
+      payment: "The Rent and Security deposit amount has to be paid in full at the time of installation",
+      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit: "Security deposit Rs. 1,500/-(refundable) will be extra and it will be returned back at the time of pickup",
+      documentation: [
+        "Aadhar card submission must for everyone",
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+      ],
+      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      pickup: [
+        "Customer must inform us minimum 3 Days prior to pick-up",
+        "Pick-up date and time will be mutually decided",
+        "Customer must be present during the handover/return"
+      ],
+      maintenance: "Repair and Maintenance of geyser will be on Hindustan rent with free of Cost during the entire season/rented time",
+      terms: [
+        "It is not allowed to shift the geyser to another location",
+        "Customer cannot transfer Hindustan rent Items to another person",
+        "Proper water pressure is required for operation",
+        "Earth leakage circuit breaker (ELCB) is recommended",
+        "Installation includes basic fitting only",
+        "Additional plumbing work will be charged extra"
+      ]
+    }
   },
   "refrigerator": {
     name: "Refrigerator",
@@ -164,7 +269,33 @@ export const products = {
         "12": 11880,
       },
     },
-    description: "Modern refrigerators designed to enhance your kitchen with style, efficiency, and functionality. These refrigerators offer spacious storage, innovative cooling technology, and energy-efficient performance to keep your food fresh for longer. With features like adjustable shelves, frost-free operation, and smart temperature controls, they cater to all your refrigeration needs. Sleek and durable, they complement any kitchen decor while ensuring reliable performance. Ideal for homes, offices, or commercial spaces, these refrigerators combine convenience with advanced technology. Flexible rental plans make upgrading to a modern refrigerator both affordable and hassle-free.",
+    description: {
+      starRating: "4 & 5 Star rated energy efficient refrigerators",
+      condition: "Its used but looks like new condition, it will be in Excellent working condition",
+      brand: "All refrigerators will be branded as per market. Brand and Color may vary as per stock availability",
+      payment: "The Rent and Security deposit amount has to be paid in full at the time of delivery",
+      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit: "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      documentation: [
+        "Aadhar card submission must for everyone",
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+      ],
+      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      pickup: [
+        "Customer must inform us minimum 3 Days prior to pick-up",
+        "Pick-up date and time will be mutually decided",
+        "Customer must be present during the handover/return"
+      ],
+      maintenance: "Repair and Maintenance of refrigerator will be on Hindustan rent with free of Cost during the entire season/rented time",
+      terms: [
+        "It is not allowed to shift the refrigerator to another location",
+        "Customer cannot transfer Hindustan rent Items to another person",
+        "Stabilizer will be provided if required (Rs. 500/- extra per month)",
+        "Keep refrigerator in well-ventilated area",
+        "24-hour power backup recommended for better performance",
+        "Level surface required for installation"
+      ]
+    }
   },
   "washing-machine": {
     name: "Washing Machine",
@@ -195,6 +326,32 @@ export const products = {
         "12": 9900,
       },
     },
-    description: "Efficient washing machines designed to make your laundry experience effortless and convenient. These machines combine advanced cleaning technology with energy-efficient performance to deliver spotless results while saving water and electricity. Featuring multiple wash programs, quick wash options, and user-friendly controls, they cater to all fabric types and laundry needs. Durable and stylish, these washing machines are perfect for homes, apartments, and even commercial spaces. With low noise operation, large capacities, and modern designs, they ensure a seamless blend of functionality and aesthetics. Flexible rental plans make upgrading to an efficient washing machine both easy and affordable.",
+    description: {
+      starRating: "4 & 5 Star rated energy efficient washing machines",
+      condition: "Its used but looks like new condition, it will be in Excellent working condition",
+      brand: "All washing machines will be branded as per market. Brand and Color may vary as per stock availability",
+      payment: "The Rent and Security deposit amount has to be paid in full at the time of delivery",
+      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit: "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      documentation: [
+        "Aadhar card submission must for everyone",
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+      ],
+      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      pickup: [
+        "Customer must inform us minimum 3 Days prior to pick-up",
+        "Pick-up date and time will be mutually decided",
+        "Customer must be present during the handover/return"
+      ],
+      maintenance: "Repair and Maintenance of washing machine will be on Hindustan rent with free of Cost during the entire season/rented time",
+      terms: [
+        "It is not allowed to shift the washing machine to another location",
+        "Customer cannot transfer Hindustan rent Items to another person",
+        "Proper water inlet and outlet required",
+        "Level surface required for installation",
+        "Basic installation included",
+        "Additional plumbing work will be charged extra"
+      ]
+    }
   },
 };
