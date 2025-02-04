@@ -28,53 +28,57 @@ export const products = {
     variants: {
       "1.0 TON": {
         image: Window,
-        "3": 8756,
-        "4": 9570,
-        "5": 10287,
-        "6": 10910,
-        "7": 11053,
-        "8": 11330,
-        "12": 12330,
+        "3": 4999,
+        "4": 5699,
+        "5": 6299,
+        "6": 6688,
+        "9": 7200,
+        "12": 7500,
       },
       "1.5 TON": {
         image: Window2,
-        "3": 8857,
-        "4": 9570,
-        "5": 10287,
-        "6": 11035,
-        "7": 11519,
-        "8": 11616,
-        "12": 12616,
+        "3": 5599,
+        "4": 6399,
+        "5": 7199,
+        "6": 7799,
+        "9": 7999,
+        "12": 8400,
       },
       "2.0 TON": {
         image: Window3,
-        "3": 8957,
-        "4": 9790,
-        "5": 10524,
-        "6": 11161,
-        "7": 11650,
-        "8": 11748,
-        "12": 12748,
+        "3": 5699,
+        "4": 6499,
+        "5": 7399,
+        "6": 7999,
+        "9": 8299,
+        "12": 8799,
       },
     },
     description: {
       starRating: "3, 4 & 5 Star as per stock availability",
-      condition: "Its used but looks like new condition, it will be in Excellent working condition",
-      brand: "All Window ACs will be branded as per market. Brand and Color may vary as per stock availability",
-      payment: "The Rent, Security deposit amount and other charges has to be paid in full at the time of installation/delivery of products",
-      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
-      securityDeposit: "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      condition:
+        "Its used but looks like new condition, it will be in Excellent working condition",
+      brand:
+        "All Window ACs will be branded as per market. Brand and Color may vary as per stock availability",
+      payment:
+        "The Rent, Security deposit amount and other charges has to be paid in full at the time of installation/delivery of products",
+      paymentMode:
+        "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit:
+        "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
       documentation: [
         "Aadhar card submission must for everyone",
-        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
       ],
-      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      delivery:
+        "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
       pickup: [
         "Customer must inform us minimum 3 Days prior to pick-up",
         "Pick-up date and time will be mutually decided",
-        "Customer must be present during the handover/return"
+        "Customer must be present during the handover/return",
       ],
-      maintenance: "Repair and Maintenance of Window AC will be on Hindustan rent with free of Cost during the entire season/rented time",
+      maintenance:
+        "Repair and Maintenance of Window AC will be on Hindustan rent with free of Cost during the entire season/rented time",
       terms: [
         "It is not allowed to shift the AC to another location",
         "Customer cannot transfer Hindustan rent Items to another person",
@@ -82,9 +86,9 @@ export const products = {
         "Extra Copper piping charge Rs. 300/- per feet if needed extra as per guide",
         "Electric power Requirement: AC 240V, with pre installed power plug of 16 Amp is must near AC installation location",
         "Stabilizer rental will be extra Rs.1,000/-, If required",
-        "All the Electricity part and electrical fitting as well as wooden/other work would be done at Customer's end only"
-      ]
-    }
+        "All the Electricity part and electrical fitting as well as wooden/other work would be done at Customer's end only",
+      ],
+    },
   },
   "split-ac": {
     name: "Split AC",
@@ -92,53 +96,57 @@ export const products = {
     variants: {
       "1.0 TON": {
         image: SAC,
-        "3": 10749,
-        "4": 12822,
-        "5": 12958,
-        "6": 13176,
-        "7": 13367,
-        "8": 13530,
-        "12": 14530,
+        "3": 7047,
+        "4": 7696,
+        "5": 8745,
+        "6": 10999,
+        "9": 11299,
+        "12": 11499,
       },
       "1.5 TON": {
         image: SAC2,
-        "3": 11497,
-        "4": 13856,
-        "5": 14003,
-        "6": 14238,
-        "7": 14445,
-        "8": 14621,
-        "12": 15621,
+        "3": 7797,
+        "4": 8696,
+        "5": 9995,
+        "6": 11999,
+        "9": 12299,
+        "12": 12499,
       },
       "2.0 TON": {
         image: SAC3,
-        "3": 12355,
-        "4": 14890,
-        "5": 15048,
-        "6": 15301,
-        "7": 15523,
-        "8": 15712,
-        "12": 16712,
+        "3": 8298,
+        "4": 9364,
+        "5": 10830,
+        "6": 12999,
+        "9": 13299,
+        "12": 13499,
       },
     },
     description: {
       starRating: "3, 4 & 5 Star as per stock availability",
-      condition: "Its used but looks like new condition, it will be in Excellent working condition with both indoor and outdoor units",
-      brand: "All Split ACs will be branded as per market. Brand and Color may vary as per stock availability",
-      payment: "The Rent, Security deposit amount and other charges has to be paid in full at the time of installation/delivery of products",
-      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
-      securityDeposit: "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      condition:
+        "Its used but looks like new condition, it will be in Excellent working condition with both indoor and outdoor units",
+      brand:
+        "All Split ACs will be branded as per market. Brand and Color may vary as per stock availability",
+      payment:
+        "The Rent, Security deposit amount and other charges has to be paid in full at the time of installation/delivery of products",
+      paymentMode:
+        "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit:
+        "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
       documentation: [
         "Aadhar card submission must for everyone",
-        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
       ],
-      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      delivery:
+        "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
       pickup: [
         "Customer must inform us minimum 3 Days prior to pick-up",
         "Pick-up date and time will be mutually decided",
-        "Customer must be present during the handover/return"
+        "Customer must be present during the handover/return",
       ],
-      maintenance: "Repair and Maintenance of Split AC will be on Hindustan rent with free of Cost during the entire season/rented time",
+      maintenance:
+        "Repair and Maintenance of Split AC will be on Hindustan rent with free of Cost during the entire season/rented time",
       terms: [
         "It is not allowed to shift the AC to another location",
         "Customer cannot transfer Hindustan rent Items to another person",
@@ -146,9 +154,9 @@ export const products = {
         "Copper piping up to 3 meters included, extra length charged at Rs. 300/- per feet",
         "Electric power Requirement: AC 240V, with pre installed power plug of 16 Amp is must near AC installation location",
         "Stabilizer rental will be extra Rs.1,000/-, If required",
-        "All the Electricity part and electrical fitting as well as wooden/other work would be done at Customer's end only"
-      ]
-    }
+        "All the Electricity part and electrical fitting as well as wooden/other work would be done at Customer's end only",
+      ],
+    },
   },
 
   "room-heater": {
@@ -176,8 +184,10 @@ export const products = {
     },
     description: {
       starRating: "ISI marked quality heaters",
-      condition: "Oil Room heater, also known as an Oil-filled radiator(OFR) & Tower Heater. Constructed as thin fins, available in 9FINs, 11FINs, 13FINs configurations.",
-      brand: "All heaters will be branded as per market. Brand and Color may vary as per stock availability",
+      condition:
+        "Oil Room heater, also known as an Oil-filled radiator(OFR) & Tower Heater. Constructed as thin fins, available in 9FINs, 11FINs, 13FINs configurations.",
+      brand:
+        "All heaters will be branded as per market. Brand and Color may vary as per stock availability",
       features: [
         "Negligible sound production for peaceful sleep",
         "Retains heat for long after turning off due to heating oil",
@@ -185,22 +195,25 @@ export const products = {
         "Effective heating for larger rooms",
         "Maintains ideal temperature throughout the room",
         "Best placed in a central spot for natural heat circulation",
-        "More effective in rooms with doors than open spaces"
+        "More effective in rooms with doors than open spaces",
       ],
       payment: "One time advance payment applicable",
-      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      paymentMode:
+        "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
       securityDeposit: "Security deposit Rs. 1,999/-(refundable) will be extra",
       documentation: [
         "Aadhar card submission must for everyone",
-        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
       ],
-      delivery: "Customer must be present during delivery for product inspection and condition verification",
+      delivery:
+        "Customer must be present during delivery for product inspection and condition verification",
       pickup: [
         "Customer must inform us minimum 3 Days prior to pick-up",
         "Pick-up date and time will be mutually decided",
-        "Customer must be present during the handover/return"
+        "Customer must be present during the handover/return",
       ],
-      maintenance: "Repair and Maintenance of heater will be on Hindustan rent with free of Cost during the entire season/rented time",
+      maintenance:
+        "Repair and Maintenance of heater will be on Hindustan rent with free of Cost during the entire season/rented time",
       terms: [
         "It is not allowed to shift the heater to another location",
         "Customer cannot transfer Hindustan rent Items to another person",
@@ -208,12 +221,12 @@ export const products = {
         "Heaters are only for rent, not for sale",
         "Electric power requirement: AC 230V, with pre-installed power plug of 16 Amp near heater location",
         "Proper earthing is required for safe operation",
-        "All electrical connections must be properly secured"
-      ]
-    }
+        "All electrical connections must be properly secured",
+      ],
+    },
   },
 
-  "geyser": {
+  geyser: {
     name: "Geyser",
     image: GeyserM,
     variants: {
@@ -227,33 +240,40 @@ export const products = {
     },
     description: {
       starRating: "5 Star rated energy efficient geysers",
-      condition: "Its used but looks like new condition, it will be in Excellent working condition",
-      brand: "All geysers will be branded as per market. Brand and Color may vary as per stock availability",
-      payment: "The Rent and Security deposit amount has to be paid in full at the time of installation",
-      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
-      securityDeposit: "Security deposit Rs. 1,500/-(refundable) will be extra and it will be returned back at the time of pickup",
+      condition:
+        "Its used but looks like new condition, it will be in Excellent working condition",
+      brand:
+        "All geysers will be branded as per market. Brand and Color may vary as per stock availability",
+      payment:
+        "The Rent and Security deposit amount has to be paid in full at the time of installation",
+      paymentMode:
+        "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit:
+        "Security deposit Rs. 1,500/-(refundable) will be extra and it will be returned back at the time of pickup",
       documentation: [
         "Aadhar card submission must for everyone",
-        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
       ],
-      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      delivery:
+        "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
       pickup: [
         "Customer must inform us minimum 3 Days prior to pick-up",
         "Pick-up date and time will be mutually decided",
-        "Customer must be present during the handover/return"
+        "Customer must be present during the handover/return",
       ],
-      maintenance: "Repair and Maintenance of geyser will be on Hindustan rent with free of Cost during the entire season/rented time",
+      maintenance:
+        "Repair and Maintenance of geyser will be on Hindustan rent with free of Cost during the entire season/rented time",
       terms: [
         "It is not allowed to shift the geyser to another location",
         "Customer cannot transfer Hindustan rent Items to another person",
         "Proper water pressure is required for operation",
         "Earth leakage circuit breaker (ELCB) is recommended",
         "Installation includes basic fitting only",
-        "Additional plumbing work will be charged extra"
-      ]
-    }
+        "Additional plumbing work will be charged extra",
+      ],
+    },
   },
-  "refrigerator": {
+  refrigerator: {
     name: "Refrigerator",
     image: RefM,
     variants: {
@@ -284,31 +304,38 @@ export const products = {
     },
     description: {
       starRating: "4 & 5 Star rated energy efficient refrigerators",
-      condition: "Its used but looks like new condition, it will be in Excellent working condition",
-      brand: "All refrigerators will be branded as per market. Brand and Color may vary as per stock availability",
-      payment: "The Rent and Security deposit amount has to be paid in full at the time of delivery",
-      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
-      securityDeposit: "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      condition:
+        "Its used but looks like new condition, it will be in Excellent working condition",
+      brand:
+        "All refrigerators will be branded as per market. Brand and Color may vary as per stock availability",
+      payment:
+        "The Rent and Security deposit amount has to be paid in full at the time of delivery",
+      paymentMode:
+        "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit:
+        "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
       documentation: [
         "Aadhar card submission must for everyone",
-        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
       ],
-      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      delivery:
+        "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
       pickup: [
         "Customer must inform us minimum 3 Days prior to pick-up",
         "Pick-up date and time will be mutually decided",
-        "Customer must be present during the handover/return"
+        "Customer must be present during the handover/return",
       ],
-      maintenance: "Repair and Maintenance of refrigerator will be on Hindustan rent with free of Cost during the entire season/rented time",
+      maintenance:
+        "Repair and Maintenance of refrigerator will be on Hindustan rent with free of Cost during the entire season/rented time",
       terms: [
         "It is not allowed to shift the refrigerator to another location",
         "Customer cannot transfer Hindustan rent Items to another person",
         "Stabilizer will be provided if required (Rs. 500/- extra per month)",
         "Keep refrigerator in well-ventilated area",
         "24-hour power backup recommended for better performance",
-        "Level surface required for installation"
-      ]
-    }
+        "Level surface required for installation",
+      ],
+    },
   },
   "washing-machine": {
     name: "Washing Machine",
@@ -341,30 +368,37 @@ export const products = {
     },
     description: {
       starRating: "4 & 5 Star rated energy efficient washing machines",
-      condition: "Its used but looks like new condition, it will be in Excellent working condition",
-      brand: "All washing machines will be branded as per market. Brand and Color may vary as per stock availability",
-      payment: "The Rent and Security deposit amount has to be paid in full at the time of delivery",
-      paymentMode: "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
-      securityDeposit: "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+      condition:
+        "Its used but looks like new condition, it will be in Excellent working condition",
+      brand:
+        "All washing machines will be branded as per market. Brand and Color may vary as per stock availability",
+      payment:
+        "The Rent and Security deposit amount has to be paid in full at the time of delivery",
+      paymentMode:
+        "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
+      securityDeposit:
+        "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
       documentation: [
         "Aadhar card submission must for everyone",
-        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)"
+        "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
       ],
-      delivery: "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
+      delivery:
+        "Customer or their representative must be present at the agreed date and time for getting Items checked in good condition",
       pickup: [
         "Customer must inform us minimum 3 Days prior to pick-up",
         "Pick-up date and time will be mutually decided",
-        "Customer must be present during the handover/return"
+        "Customer must be present during the handover/return",
       ],
-      maintenance: "Repair and Maintenance of washing machine will be on Hindustan rent with free of Cost during the entire season/rented time",
+      maintenance:
+        "Repair and Maintenance of washing machine will be on Hindustan rent with free of Cost during the entire season/rented time",
       terms: [
         "It is not allowed to shift the washing machine to another location",
         "Customer cannot transfer Hindustan rent Items to another person",
         "Proper water inlet and outlet required",
         "Level surface required for installation",
         "Basic installation included",
-        "Additional plumbing work will be charged extra"
-      ]
-    }
+        "Additional plumbing work will be charged extra",
+      ],
+    },
   },
 };

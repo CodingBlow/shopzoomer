@@ -1,4 +1,9 @@
-import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
+import {
+  useParams,
+  useNavigate,
+  useSearchParams,
+  Link,
+} from "react-router-dom";
 import { products } from "@/data/products";
 import { useState, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
@@ -63,8 +68,8 @@ export const ProductDetail = () => {
 
   if (!product) return <div>Product not found</div>;
 
-  const variantImage = selectedVariant 
-    ? product.variants[selectedVariant]?.image 
+  const variantImage = selectedVariant
+    ? product.variants[selectedVariant]?.image
     : product.image;
 
   const similarProducts = Object.entries(products)
@@ -158,42 +163,25 @@ export const ProductDetail = () => {
     }
   };
 
-  const sendToTelegram = async (orderData: any): Promise<boolean> => {
-    const botToken = "7890027454:AAH9eCTnijNXPuR701y0NfdcrEw6lfuIfqk";
-    const chatId = "1684000886";
+  const sendToWhatsApp = (orderData: any): boolean => {
+    const phoneNumber = "917050068050"; 
 
     const message =
-      `🛍️ *New Order Received* 🛍️\n\n` +
-      `📦 *Product:* ${orderData.product}\n` +
-      `📅 *Duration:* ${orderData.duration} months\n` +
-      `🔢 *Quantity:* ${orderData.quantity}\n` +
-      `💰 *Total Price:* ${orderData.totalPrice}\n` +
-      `📅 *Delivery Date:* ${orderData.deliveryDate}\n\n` +
-      `👤 *Customer Name:* ${orderData.name}\n` +
-      `📞 *Customer Phone:* ${orderData.phone}\n` +
-      `🏠 *Customer Address:* ${orderData.address}`;
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+      `🛍️ New Order Received 🛍️\n\n` +
+      `📦 Product: ${orderData.product}\n` +
+      `📅 Duration: ${orderData.duration} months\n` +
+      `🔢 Quantity: ${orderData.quantity}\n` +
+      `💰 Total Price: ${orderData.totalPrice}\n` +
+      `📅 Delivery Date: ${orderData.deliveryDate}\n\n` +
+      `👤 Customer Name: ${orderData.name}\n` +
+      `📞 Customer Phone: ${orderData.phone}\n` +
+      `🏠 Customer Address: ${orderData.address}`;
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message,
-          parse_mode: "Markdown",
-        }),
-      });
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-      const data = await response.json();
-
-      return data.ok;
-    } catch (error) {
-      console.error("Error sending message to Telegram:", error);
-      return false;
-    }
+    window.open(whatsappUrl, "_blank");
+    return true;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -208,18 +196,13 @@ export const ProductDetail = () => {
       ...formData,
     };
 
-    const sentToTelegram = await sendToTelegram(orderData);
+    const sentToWhatsApp = sendToWhatsApp(orderData);
 
-    if (sentToTelegram) {
+    if (sentToWhatsApp) {
       toast({
         title: "Success",
-        description: "Your order has been placed successfully!",
-      });
-    } else {
-      toast({
-        title: "Warning",
-        description: "Order placed but notification failed to send.",
-        variant: "destructive",
+        description:
+          "Your order has been placed successfully! Redirecting to WhatsApp...",
       });
     }
 
@@ -343,7 +326,12 @@ export const ProductDetail = () => {
             </div>
 
             <div className="mt-12">
-              <Accordion type="single" collapsible defaultValue="description" className="w-full">
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue="description"
+                className="w-full"
+              >
                 <AccordionItem value="description">
                   <AccordionTrigger className="text-xl font-semibold">
                     Description of Hindustan Rent
@@ -373,10 +361,10 @@ export const ProductDetail = () => {
                   <AccordionContent className="space-y-4">
                     <div className="space-y-2">
                       <p>{product.description.payment}</p>
-                      
+
                       <h3 className="font-semibold mt-4">Mode of Payment</h3>
                       <p>{product.description.paymentMode}</p>
-                      
+
                       <h3 className="font-semibold mt-4">Security Deposit</h3>
                       <p>{product.description.securityDeposit}</p>
                     </div>
@@ -404,7 +392,7 @@ export const ProductDetail = () => {
                     <div className="space-y-2">
                       <h3 className="font-semibold">Delivery</h3>
                       <p>{product.description.delivery}</p>
-                      
+
                       <h3 className="font-semibold mt-4">Pick-Up</h3>
                       <ul className="list-disc pl-5 space-y-2">
                         {product.description.pickup.map((item, index) => (
@@ -455,7 +443,9 @@ export const ProductDetail = () => {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <h3 className="text-lg font-semibold">{similarProduct.name}</h3>
+                    <h3 className="text-lg font-semibold">
+                      {similarProduct.name}
+                    </h3>
                   </CardContent>
                 </Card>
               </Link>
