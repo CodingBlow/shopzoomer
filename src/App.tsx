@@ -11,6 +11,9 @@ import { ProductVariants } from "./pages/ProductVariants";
 import { Contact } from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import { FloatingButtons } from "./components/FloatingButtons";
+import { AboutUs } from "./pages/AboutUs";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+import { TermsAndConditions } from "./pages/TermsAndCondition";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +32,10 @@ const App = () => (
               <Route path="/product/:id/variants" element={<ProductVariants />} />
               <Route path="/product/:id/buy" element={<ProductDetail />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<div>404</div>} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             </Routes>
           </main>
           <Footer />
