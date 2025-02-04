@@ -1,11 +1,12 @@
+import mainphoto from "../images/Frontpage.png";
+
 export const Hero = () => {
   return (
     <div className="relative h-[20vh] sm:h-[60vh] md:h-[30vh] lg:h-[80vh] mt-10">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://www.coolcareservice.in/image/cache/catalog/coolcare-banner-1920x685.jpg')",
+          backgroundImage: `url(${mainphoto})`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",

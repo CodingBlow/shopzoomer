@@ -18,7 +18,7 @@ export const Products = () => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <h3 className="text-lg font-semibold mb-1 text-gray-800">{product.name}</h3>
+                {/* <h3 className="text-lg font-semibold mb-1 text-gray-800">{product.name}</h3> */}
                 {/* <p className="text-sm text-gray-600">{product.description}</p> */}
               </CardContent>
             </Card>
