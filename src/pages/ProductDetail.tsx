@@ -351,17 +351,17 @@ export const ProductDetail = () => {
                   <AccordionContent className="space-y-4">
                     <div className="space-y-2">
                       <h3 className="font-semibold">Star Rating</h3>
-                      <p>3, 4 & 5 Star as per stock availability</p>
+                      <p>{product.description.starRating}</p>
                     </div>
 
                     <div className="space-y-2">
                       <h3 className="font-semibold">Product Condition</h3>
-                      <p>Its used but looks like new condition, it will be in Excellent working condition.</p>
+                      <p>{product.description.condition}</p>
                     </div>
 
                     <div className="space-y-2">
                       <h3 className="font-semibold">Brand</h3>
-                      <p>All products will be branded as per market. Brand and Color may vary as per stock availability.</p>
+                      <p>{product.description.brand}</p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -372,13 +372,13 @@ export const ProductDetail = () => {
                   </AccordionTrigger>
                   <AccordionContent className="space-y-4">
                     <div className="space-y-2">
-                      <p>The Rent, Security deposit amount and other charges has to be paid in full at the time of installation/delivery of products.</p>
+                      <p>{product.description.payment}</p>
                       
                       <h3 className="font-semibold mt-4">Mode of Payment</h3>
-                      <p>Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc.</p>
+                      <p>{product.description.paymentMode}</p>
                       
                       <h3 className="font-semibold mt-4">Security Deposit</h3>
-                      <p>Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup.</p>
+                      <p>{product.description.securityDeposit}</p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -389,8 +389,9 @@ export const ProductDetail = () => {
                   </AccordionTrigger>
                   <AccordionContent>
                     <ul className="list-disc pl-5 space-y-2">
-                      <li>Aadhar card submission must for everyone</li>
-                      <li>Any two from: Govt ID card, Bank statement, Company name, GST number, DL Selfie etc</li>
+                      {product.description.documentation.map((doc, index) => (
+                        <li key={index}>{doc}</li>
+                      ))}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
@@ -402,13 +403,13 @@ export const ProductDetail = () => {
                   <AccordionContent className="space-y-4">
                     <div className="space-y-2">
                       <h3 className="font-semibold">Delivery</h3>
-                      <p>Customer or their representative must be present at the agreed date and time for getting Items checked in good condition.</p>
+                      <p>{product.description.delivery}</p>
                       
                       <h3 className="font-semibold mt-4">Pick-Up</h3>
                       <ul className="list-disc pl-5 space-y-2">
-                        <li>Customer must inform us minimum 3 Days prior to pick-up</li>
-                        <li>Pick-up date and time will be mutually decided</li>
-                        <li>Customer must be present during the handover/return</li>
+                        {product.description.pickup.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
                       </ul>
                     </div>
                   </AccordionContent>
@@ -419,7 +420,7 @@ export const ProductDetail = () => {
                     Maintenance Policy
                   </AccordionTrigger>
                   <AccordionContent>
-                    <p>Repair and Maintenance of products will be on "Hindustan rent" with free of Cost during the entire season/rented time</p>
+                    <p>{product.description.maintenance}</p>
                   </AccordionContent>
                 </AccordionItem>
 
@@ -429,13 +430,9 @@ export const ProductDetail = () => {
                   </AccordionTrigger>
                   <AccordionContent>
                     <ul className="list-disc pl-5 space-y-2">
-                      <li>It is not allowed to shift the rented item to another location</li>
-                      <li>Customer cannot transfer "Hindustan rent" Items to another person</li>
-                      <li>Electric sub meter charge Rs. 1,000/-, if required</li>
-                      <li>Extra Copper piping charge Rs. 300/- per feet if need extra as per guide</li>
-                      <li>Electric power Requirement: AC 240V, with pre installed power plug of 16 Amp is must near AC installation location</li>
-                      <li>Stabilizer rental will be extra Rs.1,000/-, If required</li>
-                      <li>All the Electricity part and electrical fitting as well as wooden/other work would be done at Customer's end only</li>
+                      {product.description.terms.map((term, index) => (
+                        <li key={index}>{term}</li>
+                      ))}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
