@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams, Link } from "react-router-dom";
 import { products } from "@/data/products";
 import { useState, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
@@ -39,6 +39,8 @@ import {
 
 export const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
+  const selectedVariant = searchParams.get("variant");
   const navigate = useNavigate();
   const { toast } = useToast();
   const product = products[id as keyof typeof products];
@@ -60,6 +62,14 @@ export const ProductDetail = () => {
   }, []);
 
   if (!product) return <div>Product not found</div>;
+
+  const variantImage = selectedVariant 
+    ? product.variants[selectedVariant]?.image 
+    : product.image;
+
+  const similarProducts = Object.entries(products)
+    .filter(([productId]) => productId !== id)
+    .slice(0, 3);
 
   const getProductSpecifications = () => {
     switch (id) {
@@ -152,7 +162,6 @@ export const ProductDetail = () => {
     const botToken = "7890027454:AAH9eCTnijNXPuR701y0NfdcrEw6lfuIfqk";
     const chatId = "1684000886";
 
-    // Format the message using emojis
     const message =
       `🛍️ *New Order Received* 🛍️\n\n` +
       `📦 *Product:* ${orderData.product}\n` +
@@ -174,13 +183,13 @@ export const ProductDetail = () => {
         body: JSON.stringify({
           chat_id: chatId,
           text: message,
-          parse_mode: "Markdown", // Specify Markdown formatting
+          parse_mode: "Markdown",
         }),
       });
 
       const data = await response.json();
 
-      return data.ok; // Return whether the message was sent successfully
+      return data.ok;
     } catch (error) {
       console.error("Error sending message to Telegram:", error);
       return false;
@@ -227,18 +236,16 @@ export const ProductDetail = () => {
         <Card className="overflow-hidden shadow-lg">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-2 gap-12">
-              {/* Left side - Product Image */}
               <div>
                 <div className="relative">
                   <img
-                    src={product.image}
+                    src={variantImage}
                     alt={product.name}
-                    className="w-8/12 h-auto rounded-lg shadow-md hover:animate-zoom"
+                    className="w-full h-auto rounded-lg shadow-md hover:animate-zoom"
                   />
                 </div>
               </div>
 
-              {/* Right side - Buying Options */}
               <div className="space-y-8">
                 <div>
                   <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
@@ -335,9 +342,8 @@ export const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Product Description and Details */}
             <div className="mt-12">
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion type="single" collapsible defaultValue="description" className="w-full">
                 <AccordionItem value="description">
                   <AccordionTrigger className="text-xl font-semibold">
                     Description of Hindustan Rent
@@ -438,51 +444,27 @@ export const ProductDetail = () => {
           </CardContent>
         </Card>
 
-        <Dialog open={showForm} onOpenChange={setShowForm}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Complete Your Order</DialogTitle>
-            </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Name</label>
-                <Input
-                  required
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Phone</label>
-                <Input
-                  required
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Address
-                </label>
-                <Input
-                  required
-                  value={formData.address}
-                  onChange={(e) =>
-                    setFormData({ ...formData, address: e.target.value })
-                  }
-                />
-              </div>
-              <Button type="submit" className="w-full">
-                Place Order
-              </Button>
-            </form>
-          </DialogContent>
-        </Dialog>
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold mb-8">Similar Products</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {similarProducts.map(([productId, similarProduct]) => (
+              <Link key={productId} to={`/product/${productId}/variants`}>
+                <Card className="cursor-pointer transition-transform hover:scale-105">
+                  <CardContent className="p-4">
+                    <div className="w-full h-48 overflow-hidden rounded-md mb-4">
+                      <img
+                        src={similarProduct.image}
+                        alt={similarProduct.name}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <h3 className="text-lg font-semibold">{similarProduct.name}</h3>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
       </main>
       <Footer />
     </div>
