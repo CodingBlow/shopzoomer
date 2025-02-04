@@ -1,24 +1,30 @@
 import Window from "../images/WAC1.png";
+import WindowM from "../images/WAMain1.png";
 import Window2 from "../images/WAC2.png";
 import Window3 from "../images/WAC3.png";
 import Window4 from "../images/WAC4.png";
 import ORH from "../images/ORH1.png";
+import ORHM from "../images/ORHMain1.png";
 import ORH2 from "../images/ORH2.png";
 import ORH3 from "../images/ORH3.png";
 import ORH4 from "../images/ORH4.png";
 import Ref from "../images/REF1.png";
+import RefM from "../images/REFMain1.png";
 import Ref2 from "../images/REF2.jpg";
 import SAC from "../images/SAC1.jpg";
+import SACM from "../images/SAmain1.png";
 import SAC2 from "../images/SAC2.png";
 import SAC3 from "../images/SAC3.jpg";
 import Geyser from "../images/GEY1.png";
+import GeyserM from "../images/GEYMain1.png";
 import WM from "../images/WM1.jpg";
+import WMM from "../images/WMmain1.png";
 import WM2 from "../images/WM2.jpg";
 
 export const products = {
   "window-ac": {
     name: "Window AC",
-    image: Window,
+    image: WindowM,
     variants: {
       "1.0 TON": {
         image: Window,
@@ -55,7 +61,7 @@ export const products = {
   },
   "split-ac": {
     name: "Split AC",
-    image: SAC,
+    image: SACM,
     variants: {
       "1.0 TON": {
         image: SAC,
@@ -92,7 +98,7 @@ export const products = {
   },
   "room-heater": {
     name: "Room Heater",
-    image: ORH,
+    image: ORHM,
     variants: {
       "9Fin": {
         image: ORH,
@@ -117,7 +123,7 @@ export const products = {
   },
   "geyser": {
     name: "Geyser",
-    image: Geyser,
+    image: GeyserM,
     variants: {
       "15L - 20L": {
         image: Geyser,
@@ -131,7 +137,7 @@ export const products = {
   },
   "refrigerator": {
     name: "Refrigerator",
-    image: Ref,
+    image: RefM,
     variants: {
       "150-220L": {
         image: Ref,
@@ -162,7 +168,7 @@ export const products = {
   },
   "washing-machine": {
     name: "Washing Machine",
-    image: WM,
+    image: WMM,
     variants: {
       "semi-automatic": {
         image: WM,
