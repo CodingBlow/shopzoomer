@@ -111,12 +111,41 @@ export const ProductDetail = () => {
     setIsImageZoomed(isHovered);
   };
 
+  const handleWhatsAppShare = () => {
+    if (!selectedMonth || !deliveryDate || !formData.name || !formData.phone || !formData.address) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const message = `
+New Order Request:
+Product: ${product.name}
+Duration: ${selectedMonth} months
+Quantity: ${quantity}
+Total Price: ₹${totalPrice}
+Security Deposit: ${product.description.securityDeposit}
+Delivery Date: ${format(deliveryDate, 'PPP')}
+
+Customer Details:
+Name: ${formData.name}
+Phone: ${formData.phone}
+Address: ${formData.address}
+    `;
+
+    window.open(`https://wa.me/917419011361?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow container mx-auto px-4 py-8 mt-16">
         <Card className="overflow-hidden shadow-lg bg-white">
           <CardContent className="p-8">
-            <div className="grid md:grid-cols-2 gap-12">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Left Column - Product Image */}
               <div className="relative overflow-hidden rounded-lg">
                 <div 
                   className={cn(
@@ -134,7 +163,8 @@ export const ProductDetail = () => {
                 </div>
               </div>
 
-              <div className="space-y-8">
+              {/* Right Column - Product Details and Form */}
+              <div className="space-y-6">
                 <div>
                   <h1 className="text-3xl font-bold mb-2 text-gray-900">{product.name}</h1>
                   {!selectedMonth && !isGeyser && (
@@ -142,137 +172,146 @@ export const ProductDetail = () => {
                       Starting from ₹{getMinimumPrice()}/month
                     </p>
                   )}
+                </div>
+
+                {!isGeyser ? (
                   <div className="space-y-6">
-                    {!isGeyser && (
-                      <>
-                        <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Select Rental Duration
-                          </label>
-                          <Select
-                            value={selectedMonth}
-                            onValueChange={handleMonthChange}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <Select value={selectedMonth} onValueChange={handleMonthChange}>
+                          <SelectTrigger className="w-full bg-white">
+                            <SelectValue placeholder="Duration" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {getDurationOptions().map(({ value, label }) => (
+                              <SelectItem key={value} value={value}>
+                                {label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="bg-white p-4 rounded-lg border border-gray-200">
+                        <Input
+                          type="number"
+                          min="1"
+                          value={quantity}
+                          onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+                          placeholder="Quantity"
+                          className="w-full bg-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal bg-white",
+                              !deliveryDate && "text-muted-foreground"
+                            )}
                           >
-                            <SelectTrigger className="w-full bg-white">
-                              <SelectValue placeholder="Choose duration" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {getDurationOptions().map(({ value, label }) => (
-                                <SelectItem key={value} value={value}>
-                                  {label}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-
-                        <div className="bg-white p-6 rounded-lg border border-gray-200">
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Quantity
-                          </label>
-                          <Input
-                            type="number"
-                            min="1"
-                            value={quantity}
-                            onChange={(e) =>
-                              handleQuantityChange(parseInt(e.target.value) || 1)
-                            }
-                            className="w-full bg-white"
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {deliveryDate ? format(deliveryDate, "PPP") : "Select delivery date"}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={deliveryDate}
+                            onSelect={setDeliveryDate}
+                            disabled={(date) => date < new Date()}
                           />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+
+                    {pricePerMonth > 0 && (
+                      <div className="bg-gray-50 p-6 rounded-lg space-y-3 border-l-4 border-primary">
+                        <div className="flex justify-between items-center">
+                          <p className="text-gray-600">Price per month:</p>
+                          <p className="text-lg font-semibold">₹{pricePerMonth}</p>
                         </div>
-
-                        <div className="bg-white p-6 rounded-lg border border-gray-200">
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Delivery Date
-                          </label>
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant="outline"
-                                className={cn(
-                                  "w-full justify-start text-left font-normal bg-white",
-                                  !deliveryDate && "text-muted-foreground"
-                                )}
-                              >
-                                <CalendarIcon className="mr-2 h-4 w-4" />
-                                {deliveryDate ? (
-                                  format(deliveryDate, "PPP")
-                                ) : (
-                                  <span>Select date</span>
-                                )}
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0" align="start">
-                              <Calendar
-                                mode="single"
-                                selected={deliveryDate}
-                                onSelect={setDeliveryDate}
-                                disabled={(date) => date < new Date()}
-                              />
-                            </PopoverContent>
-                          </Popover>
+                        <div className="flex justify-between items-center">
+                          <p className="text-gray-600">Total Price:</p>
+                          <p className="text-2xl font-bold text-primary">₹{totalPrice}</p>
                         </div>
-
-                        {pricePerMonth > 0 && (
-                          <div className="bg-gray-50 p-6 rounded-lg space-y-3 border-l-4 border-primary">
-                            <div className="flex justify-between items-center">
-                              <p className="text-gray-600">Price per month:</p>
-                              <p className="text-lg font-semibold">₹{pricePerMonth}</p>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <p className="text-gray-600">Total Price:</p>
-                              <p className="text-2xl font-bold text-primary">₹{totalPrice}</p>
-                            </div>
-                            <div className="flex justify-between items-center pt-2 border-t border-gray-200">
-                              <p className="text-gray-600">Security Deposit:</p>
-                              <p className="text-lg font-medium text-gray-800">
-                                {product.description.securityDeposit} <span className="text-sm text-gray-500">(refundable)</span>
-                              </p>
-                            </div>
-                          </div>
-                        )}
-
-                        <Button
-                          onClick={() => {
-                            if (!selectedMonth || !deliveryDate) {
-                              toast({
-                                title: "Error",
-                                description: "Please select all required options",
-                                variant: "destructive",
-                              });
-                              return;
-                            }
-                            setShowForm(true);
-                          }}
-                          className="w-full py-6 text-lg font-semibold"
-                        >
-                          Request Now
-                        </Button>
-                      </>
-                    )}
-                    {isGeyser && (
-                      <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-primary">
-                        <h3 className="text-xl font-semibold mb-4">Maintenance Service</h3>
-                        <p className="text-gray-700 mb-4">
-                          This product is available for maintenance service only. Please contact us for maintenance requests.
-                        </p>
-                        <Button
-                          onClick={() => {
-                            const message = "Hi, I would like to request maintenance service for a geyser.";
-                            window.open(`https://wa.me/917050068050?text=${encodeURIComponent(message)}`, "_blank");
-                          }}
-                          className="w-full py-6 text-lg font-semibold"
-                        >
-                          Request Maintenance
-                        </Button>
+                        <div className="flex justify-between items-center pt-2 border-t border-gray-200">
+                          <p className="text-gray-600">Security Deposit:</p>
+                          <p className="text-lg font-medium text-gray-800">
+                            {product.description.securityDeposit} <span className="text-sm text-gray-500">(refundable)</span>
+                          </p>
+                        </div>
                       </div>
                     )}
+
+                    {showForm ? (
+                      <div className="space-y-4">
+                        <Input
+                          placeholder="Your Name"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        />
+                        <Input
+                          placeholder="Phone Number"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        />
+                        <Input
+                          placeholder="Delivery Address"
+                          value={formData.address}
+                          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                        />
+                        <Button 
+                          onClick={handleWhatsAppShare}
+                          className="w-full py-6 text-lg font-semibold"
+                        >
+                          Send Request on WhatsApp
+                        </Button>
+                      </div>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          if (!selectedMonth || !deliveryDate) {
+                            toast({
+                              title: "Error",
+                              description: "Please select duration and delivery date",
+                              variant: "destructive",
+                            });
+                            return;
+                          }
+                          setShowForm(true);
+                        }}
+                        className="w-full py-6 text-lg font-semibold"
+                      >
+                        Request Now
+                      </Button>
+                    )}
                   </div>
-                </div>
+                ) : (
+                  <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-primary">
+                    <h3 className="text-xl font-semibold mb-4">Maintenance Service</h3>
+                    <p className="text-gray-700 mb-4">
+                      This product is available for maintenance service only. Please contact us for maintenance requests.
+                    </p>
+                    <Button
+                      onClick={() => {
+                        const message = "Hi, I would like to request maintenance service for a geyser.";
+                        window.open(`https://wa.me/917050068050?text=${encodeURIComponent(message)}`, "_blank");
+                      }}
+                      className="w-full py-6 text-lg font-semibold"
+                    >
+                      Request Maintenance
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
 
-            <div className="mt-12">
+            <div className="mt-8">
               <Accordion
                 type="multiple"
                 defaultValue={[
