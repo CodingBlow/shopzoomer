@@ -8,6 +8,12 @@ import { Footer } from "./components/Footer";
 import { Toaster } from "./components/ui/toaster";
 import { FloatingButtons } from "./components/FloatingButtons";
 import ScrollToTop from "./components/ScrollToTop";
+import { AboutUs } from "./pages/AboutUs";
+import { Contact } from "./pages/Contact";
+import { TermsAndConditions } from "./pages/TermsAndCondition";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+
+
 import "./App.css";
 
 function App() {
@@ -20,6 +26,12 @@ function App() {
         <Route path="/product/:id/variants" element={<ProductVariants />} />
         <Route path="/product/:id/buy" element={<ProductDetail />} />
         <Route path="/maintenance" element={<Maintenance />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        
+
       </Routes>
       <Footer />
       <FloatingButtons />

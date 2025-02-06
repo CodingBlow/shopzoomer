@@ -1,73 +1,47 @@
 import { useState, useEffect } from "react";
 import { Menu, ShoppingCart, Wrench, Headset, ThumbsUp, BadgeCheck, CreditCard } from "lucide-react";
-import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import logo from "../images/hr logo copy.jpg";
+import styled from 'styled-components';
 
-export const Navbar = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+const AnimatedHeading = styled.h2`
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #2d3748;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  animation: slideLeftRight 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY && currentScrollY > 50) {
-      setIsVisible(false);
-    } else {
-      setIsVisible(true);
+  @keyframes slideLeftRight {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
     }
-    setLastScrollY(currentScrollY);
-  };
+    25% {
+      transform: translateX(15px);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    75% {
+      transform: translateX(-15px);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
 
-  return (
-    <nav
-      className={`fixed top-0 w-full bg-white z-50 shadow-md border-b transition-transform duration-300 ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
-    >
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        {/* Logo */}
-        <a href="/" className="flex items-center">
-          <img src={logo} alt="Logo" className="w-14 h-14 rounded-full shadow-md" />
-        </a>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
-          <a href="/" className="text-gray-700 hover:text-primary font-medium">Home</a>
-          <a href="#products" className="text-gray-700 hover:text-primary font-medium">Products</a>
-          <a href="#contact" className="text-gray-700 hover:text-primary font-medium">Contact</a>
-          <Button variant="outline" size="icon" className="hover:bg-gray-100">
-            <ShoppingCart className="h-5 w-5" />
-          </Button>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div className="md:hidden flex items-center">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="hover:bg-gray-100">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent>
-              <div className="flex flex-col space-y-6 mt-8">
-                <a href="/" className="text-lg text-gray-800 hover:text-primary font-medium">Home</a>
-                <a href="#products" className="text-lg text-gray-800 hover:text-primary font-medium">Products</a>
-                <a href="#contact" className="text-lg text-gray-800 hover:text-primary font-medium">Contact</a>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
-    </nav>
-  );
-};
 
 export const Services = () => {
   const services = [
@@ -96,7 +70,9 @@ export const Services = () => {
   return (
     <div className="py-5 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-center text-xl font-bold mb-6">Home Appliances On Rent In Gurgaon - Appliance Rental Services</h2>
+        <AnimatedHeading>
+          We are offer to you Home Appliances on Rental service and Maintainance of appliances
+        </AnimatedHeading>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center border rounded-md p-4 shadow-sm">
           {services.map((service, index) => (
             <div

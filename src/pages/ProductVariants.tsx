@@ -29,7 +29,7 @@ export const ProductVariants = () => {
                   </div>
                   <h3 className="text-base font-medium mt-3 mb-1">{variant}</h3>
                   <p className="text-sm text-gray-600">
-                    Starting from ₹{minPrice}/month
+                    Starting from ₹{minPrice}
                   </p>
                 </CardContent>
                 <CardFooter className="p-2">

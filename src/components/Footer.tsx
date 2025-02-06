@@ -35,7 +35,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-white">
+                <Link to="/about-us" className="text-gray-300 hover:text-white">
                   About
                 </Link>
               </li>
@@ -87,10 +87,11 @@ export const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/product/geyser/variants"
+                  to="/maintenance"
                   className="text-gray-300 hover:text-white"
                 >
-                  Geyser
+                  Maintenance
+
                 </Link>
               </li>
             </ul>
@@ -101,6 +102,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-300">
               <li>Email: Hindustanrent@gmail.com</li>
               <li>Phone: +91 7419011361</li>
+              <li>Phone: +91 7419011362</li>
               <li>Address: Gurugram</li>
             </ul>
           </div>

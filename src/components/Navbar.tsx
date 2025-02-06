@@ -47,6 +47,12 @@ export const Navbar = () => {
             Home
           </Link>
           <Link
+            to="/about-us"
+            className="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-primary font-medium border rounded-md hover:border-primary"
+          >
+            About
+          </Link>
+          <Link
             to="/product/window-ac/variants"
             className="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-primary font-medium border rounded-md hover:border-primary"
           >
