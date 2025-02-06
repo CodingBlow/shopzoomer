@@ -165,21 +165,15 @@ export const products = {
     variants: {
       "9Fin": {
         image: ORH,
-        "1": 2750,
-        "2": 3850,
-        "3": 4400,
+        "Full Season (Till 31 March)": 1099,
       },
       "11Fin": {
         image: ORH2,
-        "1": 3080,
-        "2": 4400,
-        "3": 4950,
+        "Full Season (Till 31 March)": 1299,
       },
       "13Fin": {
         image: ORH3,
-        "1": 3300,
-        "2": 4840,
-        "3": 5060,
+        "Full Season (Till 31 March)": 1399,
       },
     },
     description: {
@@ -200,7 +194,11 @@ export const products = {
       payment: "One time advance payment applicable",
       paymentMode:
         "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
-      securityDeposit: "Security deposit Rs. 1,999/-(refundable) will be extra",
+      securityDeposit: {
+        "9Fin": "Security deposit Rs. 2,099/-(refundable) will be extra",
+        "11Fin": "Security deposit Rs. 1,999/-(refundable) will be extra",
+        "13Fin": "Security deposit Rs. 1,999/-(refundable) will be extra"
+      },
       documentation: [
         "Aadhar card submission must for everyone",
         "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
