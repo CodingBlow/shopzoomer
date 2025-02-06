@@ -18,8 +18,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 import {
   Popover,
   PopoverContent,
@@ -52,9 +50,20 @@ export const ProductDetail = () => {
     phone: "",
     address: "",
   });
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [pricePerMonth, setPricePerMonth] = useState(0);
+
+  // Calculate minimum price
+  const getMinimumPrice = () => {
+    if (!product) return 0;
+    const variant = Object.values(product.variants)[0];
+    const prices = Object.entries(variant)
+      .filter(([key]) => key !== "image")
+      .map(([_, price]) => Number(price));
+    return Math.min(...prices);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -86,54 +95,6 @@ export const ProductDetail = () => {
     }
   };
 
-  const sendToWhatsApp = (orderData: any) => {
-    const phoneNumber = "917050068050";
-    const message = 
-      `🛍️ New Order Request!\n\n` +
-      `📦 Product: ${orderData.product}\n` +
-      `📅 Duration: ${orderData.duration} months\n` +
-      `🔢 Quantity: ${orderData.quantity}\n` +
-      `💰 Price per month: ₹${orderData.pricePerMonth}\n` +
-      `💰 Total Price: ₹${orderData.totalPrice}\n` +
-      `🔒 Security Deposit: ${product.description.securityDeposit}\n` +
-      `📅 Delivery Date: ${orderData.deliveryDate}\n\n` +
-      `👤 Customer Details:\n` +
-      `Name: ${orderData.name}\n` +
-      `📞 Phone: ${orderData.phone}\n` +
-      `🏠 Address: ${orderData.address}`;
-
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-    return true;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const orderData = {
-      product: product.name,
-      duration: selectedMonth,
-      quantity,
-      pricePerMonth,
-      totalPrice,
-      deliveryDate: deliveryDate?.toLocaleDateString(),
-      ...formData,
-    };
-
-    const sentToWhatsApp = sendToWhatsApp(orderData);
-
-    if (sentToWhatsApp) {
-      toast({
-        title: "Success",
-        description: "Your request has been sent! We'll contact you shortly.",
-      });
-      setShowForm(false);
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
-    }
-  };
-
   const getDurationOptions = () => {
     const variant = Object.values(product.variants)[0];
     return Object.keys(variant)
@@ -146,36 +107,54 @@ export const ProductDetail = () => {
 
   const isGeyser = id === "geyser";
 
+  const handleImageHover = (isHovered: boolean) => {
+    setIsImageZoomed(isHovered);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
       <main className="flex-grow container mx-auto px-4 py-8 mt-16">
-        <Card className="overflow-hidden shadow-lg">
+        <Card className="overflow-hidden shadow-lg bg-white">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <div className="relative">
+              <div className="relative overflow-hidden rounded-lg">
+                <div 
+                  className={cn(
+                    "transition-transform duration-300 ease-out",
+                    isImageZoomed ? "scale-125" : "scale-100"
+                  )}
+                  onMouseEnter={() => handleImageHover(true)}
+                  onMouseLeave={() => handleImageHover(false)}
+                >
                   <img
                     src={variantImage}
                     alt={product.name}
-                    className="w-90 h-auto rounded-lg shadow-md hover:animate-zoom"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               </div>
 
               <div className="space-y-8">
                 <div>
-                  <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+                  <h1 className="text-3xl font-bold mb-2 text-gray-900">{product.name}</h1>
+                  {!selectedMonth && !isGeyser && (
+                    <p className="text-lg text-primary font-semibold mb-4">
+                      Starting from ₹{getMinimumPrice()}/month
+                    </p>
+                  )}
                   <div className="space-y-6">
                     {!isGeyser && (
                       <>
-                        <div className="bg-gray-50 p-4 rounded-lg">
+                        <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Select Rental Duration
+                          </label>
                           <Select
                             value={selectedMonth}
                             onValueChange={handleMonthChange}
                           >
-                            <SelectTrigger className="w-full">
-                              <SelectValue placeholder="Select duration" />
+                            <SelectTrigger className="w-full bg-white">
+                              <SelectValue placeholder="Choose duration" />
                             </SelectTrigger>
                             <SelectContent>
                               {getDurationOptions().map(({ value, label }) => (
@@ -187,8 +166,8 @@ export const ProductDetail = () => {
                           </Select>
                         </div>
 
-                        <div>
-                          <label className="block text-sm font-medium mb-2">
+                        <div className="bg-white p-6 rounded-lg border border-gray-200">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
                             Quantity
                           </label>
                           <Input
@@ -198,12 +177,12 @@ export const ProductDetail = () => {
                             onChange={(e) =>
                               handleQuantityChange(parseInt(e.target.value) || 1)
                             }
-                            className="w-full"
+                            className="w-full bg-white"
                           />
                         </div>
 
-                        <div>
-                          <label className="block text-sm font-medium mb-2">
+                        <div className="bg-white p-6 rounded-lg border border-gray-200">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
                             Delivery Date
                           </label>
                           <Popover>
@@ -211,7 +190,7 @@ export const ProductDetail = () => {
                               <Button
                                 variant="outline"
                                 className={cn(
-                                  "w-full justify-start text-left font-normal",
+                                  "w-full justify-start text-left font-normal bg-white",
                                   !deliveryDate && "text-muted-foreground"
                                 )}
                               >
@@ -219,7 +198,7 @@ export const ProductDetail = () => {
                                 {deliveryDate ? (
                                   format(deliveryDate, "PPP")
                                 ) : (
-                                  <span>Pick a date</span>
+                                  <span>Select date</span>
                                 )}
                               </Button>
                             </PopoverTrigger>
@@ -235,16 +214,21 @@ export const ProductDetail = () => {
                         </div>
 
                         {pricePerMonth > 0 && (
-                          <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                            <p className="text-lg">
-                              Price per month: ₹{pricePerMonth}
-                            </p>
-                            <p className="text-2xl font-bold text-primary">
-                              Total Price: ₹{totalPrice}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                              Security Deposit: {product.description.securityDeposit}
-                            </p>
+                          <div className="bg-gray-50 p-6 rounded-lg space-y-3 border-l-4 border-primary">
+                            <div className="flex justify-between items-center">
+                              <p className="text-gray-600">Price per month:</p>
+                              <p className="text-lg font-semibold">₹{pricePerMonth}</p>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <p className="text-gray-600">Total Price:</p>
+                              <p className="text-2xl font-bold text-primary">₹{totalPrice}</p>
+                            </div>
+                            <div className="flex justify-between items-center pt-2 border-t border-gray-200">
+                              <p className="text-gray-600">Security Deposit:</p>
+                              <p className="text-lg font-medium text-gray-800">
+                                {product.description.securityDeposit} <span className="text-sm text-gray-500">(refundable)</span>
+                              </p>
+                            </div>
                           </div>
                         )}
 
@@ -260,14 +244,14 @@ export const ProductDetail = () => {
                             }
                             setShowForm(true);
                           }}
-                          className="w-full"
+                          className="w-full py-6 text-lg font-semibold"
                         >
                           Request Now
                         </Button>
                       </>
                     )}
                     {isGeyser && (
-                      <div className="bg-gray-50 p-6 rounded-lg">
+                      <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-primary">
                         <h3 className="text-xl font-semibold mb-4">Maintenance Service</h3>
                         <p className="text-gray-700 mb-4">
                           This product is available for maintenance service only. Please contact us for maintenance requests.
@@ -277,7 +261,7 @@ export const ProductDetail = () => {
                             const message = "Hi, I would like to request maintenance service for a geyser.";
                             window.open(`https://wa.me/917050068050?text=${encodeURIComponent(message)}`, "_blank");
                           }}
-                          className="w-full"
+                          className="w-full py-6 text-lg font-semibold"
                         >
                           Request Maintenance
                         </Button>
@@ -403,7 +387,7 @@ export const ProductDetail = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {similarProducts.map(([productId, similarProduct]) => (
               <Link key={productId} to={`/product/${productId}/variants`}>
-                <Card className="cursor-pointer transition-transform hover:scale-105">
+                <Card className="cursor-pointer transition-transform hover:scale-105 bg-white">
                   <CardContent className="p-4">
                     <div className="w-full h-48 overflow-hidden rounded-md mb-4">
                       <img
@@ -412,7 +396,7 @@ export const ProductDetail = () => {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <h3 className="text-lg font-semibold">
+                    <h3 className="text-lg font-semibold text-gray-900">
                       {similarProduct.name}
                     </h3>
                   </CardContent>
@@ -422,7 +406,6 @@ export const ProductDetail = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
