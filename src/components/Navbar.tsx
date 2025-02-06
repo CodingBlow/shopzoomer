@@ -65,10 +65,10 @@ export const Navbar = () => {
             Oil Heater
           </Link>
           <Link
-            to="/product/geyser/variants"
+            to="/maintenance"
             className="px-2 lg:px-4 py-2 text-sm lg:text-base text-gray-700 hover:text-primary font-medium border rounded-md hover:border-primary"
           >
-            Geyser
+            Maintenance
           </Link>
 
           {/* Phone */}
@@ -135,10 +135,10 @@ export const Navbar = () => {
                   Oil Heater
                 </Link>
                 <Link
-                  to="/product/geyser/variants"
+                  to="/maintenance"
                   className="text-base text-gray-800 hover:text-primary font-medium"
                 >
-                  Geyser
+                  Maintenance
                 </Link>
                 <Link
                   to="tel:+917419011361"

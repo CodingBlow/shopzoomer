@@ -33,11 +33,19 @@ export const ProductVariants = () => {
                   </p>
                 </CardContent>
                 <CardFooter className="p-2">
-                  <Link to={`/product/${id}/buy?variant=${variant}`} className="w-full">
-                    <Button className="w-full text-xs py-1">
-                      Rent Now
-                    </Button>
-                  </Link>
+                  {id === "geyser" ? (
+                    <Link to="/maintenance" className="w-full">
+                      <Button className="w-full text-xs py-1">
+                        Maintenance
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link to={`/product/${id}/buy?variant=${variant}`} className="w-full">
+                      <Button className="w-full text-xs py-1">
+                        Rent Now
+                      </Button>
+                    </Link>
+                  )}
                 </CardFooter>
               </Card>
             </div>

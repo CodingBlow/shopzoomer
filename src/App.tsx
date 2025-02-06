@@ -1,49 +1,31 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import { ProductDetail } from "./pages/ProductDetail";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
+import { Index } from "./pages/Index";
 import { ProductVariants } from "./pages/ProductVariants";
-import { Contact } from "./pages/Contact";
-import ScrollToTop from "./components/ScrollToTop";
+import { ProductDetail } from "./pages/ProductDetail";
+import { Maintenance } from "./pages/Maintenance";
+import { Footer } from "./components/Footer";
+import { Toaster } from "./components/ui/toaster";
 import { FloatingButtons } from "./components/FloatingButtons";
-import { AboutUs } from "./pages/AboutUs";
-import { PrivacyPolicy } from "./pages/PrivacyPolicy";
-import { TermsAndConditions } from "./pages/TermsAndCondition";
+import { ScrollToTop } from "./components/ScrollToTop";
+import "./App.css";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/product/:id/variants" element={<ProductVariants />} />
+        <Route path="/product/:id/buy" element={<ProductDetail />} />
+        <Route path="/maintenance" element={<Maintenance />} />
+      </Routes>
+      <Footer />
+      <FloatingButtons />
       <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/product/:id/variants" element={<ProductVariants />} />
-              <Route path="/product/:id/buy" element={<ProductDetail />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<div>404</div>} />
-              <Route path="/about" element={<AboutUs />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-            </Routes>
-          </main>
-          <Footer />
-          <FloatingButtons />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+    </Router>
+  );
+}
 
 export default App;
