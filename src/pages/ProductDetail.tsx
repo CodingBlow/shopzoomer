@@ -16,15 +16,8 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
-import { sendToTelegram } from "@/utils/telegram";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
@@ -59,8 +52,9 @@ export const ProductDetail = () => {
     phone: "",
     address: "",
   });
-  const [showCalendar, setShowCalendar] = useState(false);
+
   const [totalPrice, setTotalPrice] = useState(0);
+  const [pricePerMonth, setPricePerMonth] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -76,82 +70,10 @@ export const ProductDetail = () => {
     .filter(([productId]) => productId !== id)
     .slice(0, 3);
 
-  const getProductSpecifications = () => {
-    switch (id) {
-      case "window-ac":
-        return [
-          "Energy Rating: 5 Star",
-          "Cooling Capacity: Suitable for rooms up to 150 sq ft",
-          "Anti-bacterial Filter: Yes",
-          "Auto Restart: Yes",
-          "Sleep Mode: Available",
-          "Remote Control: LCD Display",
-          "Warranty: 1 Year Comprehensive",
-        ];
-      case "split-ac":
-        return [
-          "Inverter Technology: Yes",
-          "Energy Rating: 5 Star",
-          "Cooling Capacity: As per tonnage",
-          "4-Way Swing: Available",
-          "Anti-virus Protection: Yes",
-          "Wi-Fi Enabled: Optional",
-          "Warranty: 1 Year Comprehensive",
-        ];
-      case "room-heater":
-        return [
-          "Power Consumption: 1000W-2500W",
-          "Safety Features: Tip-over protection",
-          "Adjustable Thermostat: Yes",
-          "Heat Settings: Multiple",
-          "Portable Design: Yes",
-          "Quick Heating: Instant warmth",
-          "Warranty: 1 Year Manufacturer",
-        ];
-      case "geyser":
-        return [
-          "Capacity: 15L-20L",
-          "Heating Element: Copper",
-          "Safety Features: Multiple",
-          "Temperature Control: Yes",
-          "Installation: Free",
-          "Energy Rating: 5 Star",
-          "Warranty: 2 Years",
-        ];
-      case "refrigerator":
-        return [
-          "Energy Rating: 4 Star",
-          "Frost Free Technology",
-          "Multiple Air Vents",
-          "Toughened Glass Shelves",
-          "LED Lighting",
-          "Door Lock: Available",
-          "Warranty: 1 Year Comprehensive",
-        ];
-      case "washing-machine":
-        return [
-          "Wash Programs: Multiple",
-          "Energy Efficiency: High",
-          "Water Level Settings: Yes",
-          "Spin Speed: Adjustable",
-          "Child Lock: Available",
-          "Digital Display: Yes",
-          "Warranty: 1 Year Comprehensive",
-        ];
-      default:
-        return [
-          "Energy Efficient",
-          "Premium Build Quality",
-          "Advanced Features",
-          "Smart Controls",
-          "Warranty Coverage",
-        ];
-    }
-  };
-
   const handleMonthChange = (month: string) => {
     setSelectedMonth(month);
     const price = Object.values(product.variants)[0][month];
+    setPricePerMonth(price);
     setTotalPrice(price * quantity);
   };
 
@@ -159,27 +81,28 @@ export const ProductDetail = () => {
     setQuantity(newQuantity);
     if (selectedMonth) {
       const price = Object.values(product.variants)[0][selectedMonth];
+      setPricePerMonth(price);
       setTotalPrice(price * newQuantity);
     }
   };
 
-  const sendToWhatsApp = (orderData: any): boolean => {
-    const phoneNumber = "917050068050"; 
-
-    const message =
-      `🛍️ New Order Received 🛍️\n\n` +
+  const sendToWhatsApp = (orderData: any) => {
+    const phoneNumber = "917050068050";
+    const message = 
+      `🛍️ New Order Request!\n\n` +
       `📦 Product: ${orderData.product}\n` +
       `📅 Duration: ${orderData.duration} months\n` +
       `🔢 Quantity: ${orderData.quantity}\n` +
-      `💰 Total Price: ${orderData.totalPrice}\n` +
+      `💰 Price per month: ₹${orderData.pricePerMonth}\n` +
+      `💰 Total Price: ₹${orderData.totalPrice}\n` +
+      `🔒 Security Deposit: ${product.description.securityDeposit}\n` +
       `📅 Delivery Date: ${orderData.deliveryDate}\n\n` +
-      `👤 Customer Name: ${orderData.name}\n` +
-      `📞 Customer Phone: ${orderData.phone}\n` +
-      `🏠 Customer Address: ${orderData.address}`;
+      `👤 Customer Details:\n` +
+      `Name: ${orderData.name}\n` +
+      `📞 Phone: ${orderData.phone}\n` +
+      `🏠 Address: ${orderData.address}`;
 
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
     return true;
   };
@@ -191,6 +114,7 @@ export const ProductDetail = () => {
       product: product.name,
       duration: selectedMonth,
       quantity,
+      pricePerMonth,
       totalPrice,
       deliveryDate: deliveryDate?.toLocaleDateString(),
       ...formData,
@@ -201,16 +125,26 @@ export const ProductDetail = () => {
     if (sentToWhatsApp) {
       toast({
         title: "Success",
-        description:
-          "Your order has been placed successfully! Redirecting to WhatsApp...",
+        description: "Your request has been sent! We'll contact you shortly.",
       });
+      setShowForm(false);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
-
-    setShowForm(false);
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
   };
+
+  const getDurationOptions = () => {
+    const variant = Object.values(product.variants)[0];
+    return Object.keys(variant)
+      .filter(key => key !== "image")
+      .map(month => ({
+        value: month,
+        label: `${month} months`,
+      }));
+  };
+
+  const isGeyser = id === "geyser";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -233,93 +167,122 @@ export const ProductDetail = () => {
                 <div>
                   <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
                   <div className="space-y-6">
-                    <Select
-                      value={selectedMonth}
-                      onValueChange={handleMonthChange}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select duration (months)" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {Object.entries(Object.values(product.variants)[0]).map(
-                          ([month, price]: [string, number]) => (
-                            <SelectItem key={month} value={month}>
-                              {month} months - ₹{price}/month
-                            </SelectItem>
-                          )
-                        )}
-                      </SelectContent>
-                    </Select>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        Quantity
-                      </label>
-                      <Input
-                        type="number"
-                        min="1"
-                        value={quantity}
-                        onChange={(e) =>
-                          handleQuantityChange(parseInt(e.target.value) || 1)
-                        }
-                        className="w-full"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        Delivery Date
-                      </label>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className={cn(
-                              "w-full justify-start text-left font-normal",
-                              !deliveryDate && "text-muted-foreground"
-                            )}
+                    {!isGeyser && (
+                      <>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <Select
+                            value={selectedMonth}
+                            onValueChange={handleMonthChange}
                           >
-                            <CalendarIcon className="mr-2 h-4 w-4" />
-                            {deliveryDate ? (
-                              format(deliveryDate, "PPP")
-                            ) : (
-                              <span>Pick a date</span>
-                            )}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={deliveryDate}
-                            onSelect={setDeliveryDate}
-                            disabled={(date) => date < new Date()}
-                          />
-                        </PopoverContent>
-                      </Popover>
-                    </div>
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Select duration" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {getDurationOptions().map(({ value, label }) => (
+                                <SelectItem key={value} value={value}>
+                                  {label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
 
-                    {totalPrice > 0 && (
-                      <div className="text-2xl font-bold text-primary">
-                        Total Price: ₹{totalPrice}
+                        <div>
+                          <label className="block text-sm font-medium mb-2">
+                            Quantity
+                          </label>
+                          <Input
+                            type="number"
+                            min="1"
+                            value={quantity}
+                            onChange={(e) =>
+                              handleQuantityChange(parseInt(e.target.value) || 1)
+                            }
+                            className="w-full"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium mb-2">
+                            Delivery Date
+                          </label>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button
+                                variant="outline"
+                                className={cn(
+                                  "w-full justify-start text-left font-normal",
+                                  !deliveryDate && "text-muted-foreground"
+                                )}
+                              >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {deliveryDate ? (
+                                  format(deliveryDate, "PPP")
+                                ) : (
+                                  <span>Pick a date</span>
+                                )}
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0" align="start">
+                              <Calendar
+                                mode="single"
+                                selected={deliveryDate}
+                                onSelect={setDeliveryDate}
+                                disabled={(date) => date < new Date()}
+                              />
+                            </PopoverContent>
+                          </Popover>
+                        </div>
+
+                        {pricePerMonth > 0 && (
+                          <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+                            <p className="text-lg">
+                              Price per month: ₹{pricePerMonth}
+                            </p>
+                            <p className="text-2xl font-bold text-primary">
+                              Total Price: ₹{totalPrice}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              Security Deposit: {product.description.securityDeposit}
+                            </p>
+                          </div>
+                        )}
+
+                        <Button
+                          onClick={() => {
+                            if (!selectedMonth || !deliveryDate) {
+                              toast({
+                                title: "Error",
+                                description: "Please select all required options",
+                                variant: "destructive",
+                              });
+                              return;
+                            }
+                            setShowForm(true);
+                          }}
+                          className="w-full"
+                        >
+                          Request Now
+                        </Button>
+                      </>
+                    )}
+                    {isGeyser && (
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <h3 className="text-xl font-semibold mb-4">Maintenance Service</h3>
+                        <p className="text-gray-700 mb-4">
+                          This product is available for maintenance service only. Please contact us for maintenance requests.
+                        </p>
+                        <Button
+                          onClick={() => {
+                            const message = "Hi, I would like to request maintenance service for a geyser.";
+                            window.open(`https://wa.me/917050068050?text=${encodeURIComponent(message)}`, "_blank");
+                          }}
+                          className="w-full"
+                        >
+                          Request Maintenance
+                        </Button>
                       </div>
                     )}
-
-                    <Button
-                      onClick={() => {
-                        if (!selectedMonth || !deliveryDate) {
-                          toast({
-                            title: "Error",
-                            description: "Please select all required options",
-                            variant: "destructive",
-                          });
-                          return;
-                        }
-                        setShowForm(true);
-                      }}
-                      className="w-full"
-                    >
-                      Proceed to Order
-                    </Button>
                   </div>
                 </div>
               </div>
@@ -327,9 +290,15 @@ export const ProductDetail = () => {
 
             <div className="mt-12">
               <Accordion
-                type="single"
-                collapsible
-                defaultValue="description"
+                type="multiple"
+                defaultValue={[
+                  "description",
+                  "payment",
+                  "documentation",
+                  "delivery",
+                  "maintenance",
+                  "terms"
+                ]}
                 className="w-full"
               >
                 <AccordionItem value="description">
