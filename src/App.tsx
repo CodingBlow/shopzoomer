@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
-import { Index } from "./pages/Index";
+import Index from "./pages/Index";
 import { ProductVariants } from "./pages/ProductVariants";
 import { ProductDetail } from "./pages/ProductDetail";
 import { Maintenance } from "./pages/Maintenance";
 import { Footer } from "./components/Footer";
 import { Toaster } from "./components/ui/toaster";
 import { FloatingButtons } from "./components/FloatingButtons";
-import { ScrollToTop } from "./components/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 
 function App() {
