@@ -242,10 +242,7 @@ Address: ${formData.address}
 
                     {pricePerMonth > 0 && (
                       <div className="bg-gray-50 p-6 rounded-lg space-y-3 border-l-4 border-primary">
-                        <div className="flex justify-between items-center">
-                          <p className="text-gray-600">Price per month:</p>
-                          <p className="text-lg font-semibold">₹{pricePerMonth}</p>
-                        </div>
+                       
                         <div className="flex justify-between items-center">
                           <p className="text-gray-600">Total Price:</p>
                           <p className="text-2xl font-bold text-primary">₹{totalPrice}</p>
