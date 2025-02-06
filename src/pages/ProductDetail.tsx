@@ -55,6 +55,17 @@ export const ProductDetail = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [pricePerMonth, setPricePerMonth] = useState(0);
 
+  // Get security deposit based on variant
+  const getSecurityDeposit = () => {
+    if (!product || !selectedVariant) return "";
+    
+    if (typeof product.description.securityDeposit === 'string') {
+      return product.description.securityDeposit;
+    }
+    
+    return product.description.securityDeposit[selectedVariant as keyof typeof product.description.securityDeposit] || "";
+  };
+
   // Calculate minimum price
   const getMinimumPrice = () => {
     if (!product) return 0;
@@ -127,7 +138,7 @@ Product: ${product.name}
 Duration: ${selectedMonth} months
 Quantity: ${quantity}
 Total Price: ₹${totalPrice}
-Security Deposit: ${product.description.securityDeposit}
+Security Deposit: ${getSecurityDeposit()}
 Delivery Date: ${format(deliveryDate, 'PPP')}
 
 Customer Details:
@@ -242,7 +253,7 @@ Address: ${formData.address}
                         <div className="flex justify-between items-center pt-2 border-t border-gray-200">
                           <p className="text-gray-600">Security Deposit:</p>
                           <p className="text-lg font-medium text-gray-800">
-                            {product.description.securityDeposit} <span className="text-sm text-gray-500">(refundable)</span>
+                            {getSecurityDeposit()} <span className="text-sm text-gray-500">(refundable)</span>
                           </p>
                         </div>
                       </div>
@@ -358,7 +369,7 @@ Address: ${formData.address}
                       <p>{product.description.paymentMode}</p>
 
                       <h3 className="font-semibold mt-4">Security Deposit</h3>
-                      <p>{product.description.securityDeposit}</p>
+                      <p>{getSecurityDeposit()}</p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
