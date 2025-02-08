@@ -42,51 +42,46 @@ export const Maintenance = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-
-  if (!formData.name || !formData.phone || !formData.address || !formData.appliance || !formData.issue) {
-    toast({
-      title: "Error",
-      description: "Please fill in all required fields",
-      variant: "destructive",
-    });
-    return;
-  }
-
-  let message = `
-Maintenance Request:
-Name: ${formData.name}
-Phone: ${formData.phone}
-Address: ${formData.address}
-Appliance: ${formData.appliance}
-Issue Description: ${formData.issue}
-  `;
-
-  // First, share the image if it exists
-  if (formData.image) {
-    // Create a share object
-    const shareData = {
-      files: [formData.image],
-      title: 'Maintenance Request Image',
-      text: message
-    };
-
-    // Check if the browser supports sharing files
-    if (navigator.share && navigator.canShare(shareData)) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.log('Error sharing:', err);
-      }
+    e.preventDefault();
+  
+    if (!formData.name || !formData.phone || !formData.address || !formData.appliance || !formData.issue) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
     }
-  }
-
-  // Then open WhatsApp with the text message
-  window.open(
-    `https://wa.me/917419011361?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
-};
+  
+    let message = `
+  Maintenance Request:
+  Name: ${formData.name}
+  Phone: ${formData.phone}
+  Address: ${formData.address}
+  Appliance: ${formData.appliance}
+  Issue Description: ${formData.issue}
+    `;
+  
+    // Create a WhatsApp intent with both image and text
+    if (formData.image) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const imageData = reader.result as string;
+        
+        // Open WhatsApp web with the image and text
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=917419011361&text=${encodeURIComponent(message)}&image=${encodeURIComponent(imageData)}`;
+        window.open(whatsappUrl, '_blank');
+      };
+      reader.readAsDataURL(formData.image);
+    } else {
+      // If no image, just send the text
+      window.open(
+        `https://wa.me/917419011361?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
+    }
+  };
+  
 
   return (
     <div className="container mx-auto px-4 py-16 mt-16">
