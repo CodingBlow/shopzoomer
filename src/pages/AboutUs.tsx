@@ -8,12 +8,26 @@ export const AboutUs = () => {
       
       <div className="space-y-8 max-w-4xl mx-auto">
         <Card className="p-8 shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-primary">Our Commitment</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-primary">Our Story</h2>
           <p className="text-gray-700 leading-relaxed mb-6">
-            At Hindustan Rent, we bring convenience to your doorstep with customized solutions that fit your budget. Our service platform is designed to save your time, energy, and money while providing a hassle-free experience.
+            We "Hindustan Rent" are available at your service to your home with all that you required within your as per budget. Hindustan Rent is not only hassle free but also saves your time, both energy and money.
           </p>
           
-          <h2 className="text-2xl font-semibold mb-4 text-primary">Services We Offer</h2>
+          <p className="text-gray-700 leading-relaxed mb-6">
+            Hindustan Rent is a platform offering a various of services at home. Customers use our freely platform to book services such as AC on Rent, Oil Room Heater (OFR) on Rent, Home Appliance repair and service such as Refrigerator, Geyser Washing Machine, RO Water Purifier etc.
+          </p>
+
+          <p className="text-gray-700 leading-relaxed mb-6">
+            These services are delivered in the of their home and at a time of their choosing. We are promise our valuable customers a high quality, & reliable service experience.
+          </p>
+
+          <p className="text-gray-700 leading-relaxed mb-6">
+            We provide more than online rental & maintenance services. With our assured quality and fast services, you can say good-bye to all the hassles that come with buying and such as say hello to convenience.
+          </p>
+        </Card>
+
+        <Card className="p-8 shadow-lg">
+          <h2 className="text-2xl font-semibold mb-4 text-primary">Our Services</h2>
           <ul className="list-disc list-inside text-gray-700 leading-relaxed mb-6 space-y-2">
             <li>AC on Rent</li>
             <li>Oil Room Heater (OFR) on Rent</li>
@@ -23,27 +37,22 @@ export const AboutUs = () => {
                 <li>Geyser</li>
                 <li>Washing Machine</li>
                 <li>RO Water Purifier</li>
+                <li>Window Air Conditioner</li>
+                <li>Split Air Conditioner</li>
               </ul>
             </li>
           </ul>
 
-          <p className="text-gray-700 leading-relaxed mb-6">
-            Our platform enables customers to easily book services at their preferred time and location. We take pride in delivering high-quality, reliable service experiences to our valued customers.
-          </p>
-        </Card>
-
-        <Card className="p-8 shadow-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-primary">Service Coverage</h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            We provide AC rental services throughout Gurgaon with:
-          </p>
+          <h3 className="text-xl font-semibold mb-3">Service Features</h3>
           <ul className="list-disc list-inside text-gray-700 leading-relaxed mb-6">
             <li>Free Delivery</li>
             <li>Free Installation</li>
             <li>Same-day Delivery</li>
           </ul>
+        </Card>
 
-          <h3 className="text-xl font-semibold mb-3">Areas We Serve</h3>
+        <Card className="p-8 shadow-lg">
+          <h2 className="text-2xl font-semibold mb-4 text-primary">Areas We Serve</h2>
           <div className="text-gray-700 leading-relaxed space-y-4">
             <p className="font-medium">Sectors:</p>
             <p className="text-sm">

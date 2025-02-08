@@ -34,6 +34,11 @@ import {
 } from "@/components/ui/accordion";
 
 export const ProductDetail = () => {
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
+    null
+  );
+  const [locationError, setLocationError] = useState<string | null>(null);
+
   const { id } = useParams<{ id: string }>();
   const [searchParams] = useSearchParams();
   const selectedVariant = searchParams.get("variant");
@@ -58,12 +63,16 @@ export const ProductDetail = () => {
   // Get security deposit based on variant
   const getSecurityDeposit = () => {
     if (!product || !selectedVariant) return "";
-    
-    if (typeof product.description.securityDeposit === 'string') {
+
+    if (typeof product.description.securityDeposit === "string") {
       return product.description.securityDeposit;
     }
-    
-    return product.description.securityDeposit[selectedVariant as keyof typeof product.description.securityDeposit] || "";
+
+    return (
+      product.description.securityDeposit[
+        selectedVariant as keyof typeof product.description.securityDeposit
+      ] || ""
+    );
   };
 
   // Calculate minimum price
@@ -109,8 +118,8 @@ export const ProductDetail = () => {
   const getDurationOptions = () => {
     const variant = Object.values(product.variants)[0];
     return Object.keys(variant)
-      .filter(key => key !== "image")
-      .map(month => ({
+      .filter((key) => key !== "image")
+      .map((month) => ({
         value: month,
         label: `${month} months`,
       }));
@@ -121,9 +130,38 @@ export const ProductDetail = () => {
   const handleImageHover = (isHovered: boolean) => {
     setIsImageZoomed(isHovered);
   };
+  const getLocation = () => {
+    return new Promise<{ lat: number; lng: number }>((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject("Geolocation is not supported by your browser");
+      } else {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const coords = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            setLocation(coords);
+            resolve(coords);
+          },
+          (error) => {
+            const errorMessage = `Unable to retrieve your location: ${error.message}`;
+            setLocationError(errorMessage);
+            reject(errorMessage);
+          }
+        );
+      }
+    });
+  };
 
-  const handleWhatsAppShare = () => {
-    if (!selectedMonth || !deliveryDate || !formData.name || !formData.phone || !formData.address) {
+  const handleWhatsAppShare = async () => {
+    if (
+      !selectedMonth ||
+      !deliveryDate ||
+      !formData.name ||
+      !formData.phone ||
+      !formData.address
+    ) {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
@@ -132,22 +170,53 @@ export const ProductDetail = () => {
       return;
     }
 
-    const message = `
-New Order Request:
-Product: ${product.name}
-Duration: ${selectedMonth} months
-Quantity: ${quantity}
-Total Price: ₹${totalPrice}
-Security Deposit: ${getSecurityDeposit()}
-Delivery Date: ${format(deliveryDate, 'PPP')}
+    try {
+      const coords = await getLocation();
+      const googleMapsLink = `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
 
-Customer Details:
-Name: ${formData.name}
-Phone: ${formData.phone}
-Address: ${formData.address}
-    `;
+      const message = `
+  New Order Request:
+  Product: ${product.name}
+  Duration: ${selectedMonth} months
+  Quantity: ${quantity}
+  Total Price: ₹${totalPrice}
+  Security Deposit: ${getSecurityDeposit()}
+  Delivery Date: ${format(deliveryDate, "PPP")}
+  Location: ${googleMapsLink}
+  
+  Customer Details:
+  Name: ${formData.name}
+  Phone: ${formData.phone}
+  Address: ${formData.address}
+      `;
 
-    window.open(`https://wa.me/917419011361?text=${encodeURIComponent(message)}`, '_blank');
+      window.open(
+        `https://wa.me/917419011361?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
+    } catch (error) {
+      const message = `
+  New Order Request:
+  Product: ${product.name}
+  Duration: ${selectedMonth} months
+  Quantity: ${quantity}
+  Total Price: ₹${totalPrice}
+  Security Deposit: ${getSecurityDeposit()}
+  Delivery Date: ${format(deliveryDate, "PPP")}
+  
+  Customer Details:
+  Name: ${formData.name}
+  Phone: ${formData.phone}
+  Address: ${formData.address}
+  
+  Note: Could not retrieve location - ${error}
+      `;
+
+      window.open(
+        `https://wa.me/917419011361?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
+    }
   };
 
   return (
@@ -158,7 +227,7 @@ Address: ${formData.address}
             <div className="grid md:grid-cols-2 gap-8">
               {/* Left Column - Product Image */}
               <div className="relative overflow-hidden rounded-lg">
-                <div 
+                <div
                   className={cn(
                     "transition-transform duration-300 ease-out",
                     isImageZoomed ? "scale-125" : "scale-100"
@@ -177,7 +246,9 @@ Address: ${formData.address}
               {/* Right Column - Product Details and Form */}
               <div className="space-y-6">
                 <div>
-                  <h1 className="text-3xl font-bold mb-2 text-gray-900">{product.name}</h1>
+                  <h1 className="text-3xl font-bold mb-2 text-gray-900">
+                    {product.name}
+                  </h1>
                   {!selectedMonth && !isGeyser && (
                     <p className="text-lg text-primary font-semibold mb-4">
                       Starting from ₹{getMinimumPrice()}/month
@@ -189,7 +260,10 @@ Address: ${formData.address}
                   <div className="space-y-6">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-gray-50 p-4 rounded-lg">
-                        <Select value={selectedMonth} onValueChange={handleMonthChange}>
+                        <Select
+                          value={selectedMonth}
+                          onValueChange={handleMonthChange}
+                        >
                           <SelectTrigger className="w-full bg-white">
                             <SelectValue placeholder="Duration" />
                           </SelectTrigger>
@@ -208,7 +282,9 @@ Address: ${formData.address}
                           type="number"
                           min="1"
                           value={quantity}
-                          onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+                          onChange={(e) =>
+                            handleQuantityChange(parseInt(e.target.value) || 1)
+                          }
                           placeholder="Quantity"
                           className="w-full bg-white"
                         />
@@ -226,7 +302,9 @@ Address: ${formData.address}
                             )}
                           >
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            {deliveryDate ? format(deliveryDate, "PPP") : "Select delivery date"}
+                            {deliveryDate
+                              ? format(deliveryDate, "PPP")
+                              : "Select delivery date"}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
@@ -242,15 +320,19 @@ Address: ${formData.address}
 
                     {pricePerMonth > 0 && (
                       <div className="bg-gray-50 p-6 rounded-lg space-y-3 border-l-4 border-primary">
-                       
                         <div className="flex justify-between items-center">
                           <p className="text-gray-600">Total Price:</p>
-                          <p className="text-2xl font-bold text-primary">₹{totalPrice}</p>
+                          <p className="text-2xl font-bold text-primary">
+                            ₹{totalPrice}
+                          </p>
                         </div>
                         <div className="flex justify-between items-center pt-2 border-t border-gray-200">
                           <p className="text-gray-600">Security Deposit:</p>
                           <p className="text-lg font-medium text-gray-800">
-                            {getSecurityDeposit()} <span className="text-sm text-gray-500">(refundable)</span>
+                            {getSecurityDeposit()}{" "}
+                            <span className="text-sm text-gray-500">
+                              (refundable)
+                            </span>
                           </p>
                         </div>
                       </div>
@@ -261,19 +343,35 @@ Address: ${formData.address}
                         <Input
                           placeholder="Your Name"
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                          }
                         />
                         <Input
                           placeholder="Phone Number"
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, phone: e.target.value })
+                          }
                         />
                         <Input
                           placeholder="Delivery Address"
                           value={formData.address}
-                          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              address: e.target.value,
+                            })
+                          }
                         />
-                        <Button 
+                        <div className="text-sm text-gray-500">
+                          <p>
+                            We'll try to automatically detect your location to
+                            ensure better service.
+                          </p>
+                          <p>Please allow location access when prompted.</p>
+                        </div>
+                        <Button
                           onClick={handleWhatsAppShare}
                           className="w-full py-6 text-lg font-semibold"
                         >
@@ -286,7 +384,8 @@ Address: ${formData.address}
                           if (!selectedMonth || !deliveryDate) {
                             toast({
                               title: "Error",
-                              description: "Please select duration and delivery date",
+                              description:
+                                "Please select duration and delivery date",
                               variant: "destructive",
                             });
                             return;
@@ -301,14 +400,23 @@ Address: ${formData.address}
                   </div>
                 ) : (
                   <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-primary">
-                    <h3 className="text-xl font-semibold mb-4">Maintenance Service</h3>
+                    <h3 className="text-xl font-semibold mb-4">
+                      Maintenance Service
+                    </h3>
                     <p className="text-gray-700 mb-4">
-                      This product is available for maintenance service only. Please contact us for maintenance requests.
+                      This product is available for maintenance service only.
+                      Please contact us for maintenance requests.
                     </p>
                     <Button
                       onClick={() => {
-                        const message = "Hi, I would like to request maintenance service for a geyser.";
-                        window.open(`https://wa.me/917050068050?text=${encodeURIComponent(message)}`, "_blank");
+                        const message =
+                          "Hi, I would like to request maintenance service for a geyser.";
+                        window.open(
+                          `https://wa.me/917050068050?text=${encodeURIComponent(
+                            message
+                          )}`,
+                          "_blank"
+                        );
                       }}
                       className="w-full py-6 text-lg font-semibold"
                     >
@@ -328,7 +436,7 @@ Address: ${formData.address}
                   "documentation",
                   "delivery",
                   "maintenance",
-                  "terms"
+                  "terms",
                 ]}
                 className="w-full"
               >
