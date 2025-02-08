@@ -4,7 +4,15 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
-import { FiTool, FiUserCheck, FiShield, FiClock, FiDollarSign, FiCheckCircle } from "react-icons/fi";
+import {
+  FiTool,
+  FiUserCheck,
+  FiShield,
+  FiClock,
+  FiDollarSign,
+  FiCheckCircle,
+} from "react-icons/fi";
+import { Label } from "@/components/ui/label";
 
 export const Maintenance = () => {
   const { toast } = useToast();
@@ -12,37 +20,84 @@ export const Maintenance = () => {
     name: "",
     phone: "",
     address: "",
+    appliance: "",
     issue: "",
+    image: null as File | null,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.name || !formData.phone || !formData.address || !formData.issue) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields",
-        variant: "destructive",
-      });
-      return;
-    }
+  const appliances = [
+    "Air Conditioner",
+    "Refrigerator",
+    "Washing Machine",
+    "Room Heater",
+    "Microwave",
+    "Water Purifier",
+  ];
 
-    const message = `
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData({ ...formData, image: file });
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!formData.name || !formData.phone || !formData.address || !formData.appliance || !formData.issue) {
+    toast({
+      title: "Error",
+      description: "Please fill in all required fields",
+      variant: "destructive",
+    });
+    return;
+  }
+
+  let message = `
 Maintenance Request:
 Name: ${formData.name}
 Phone: ${formData.phone}
 Address: ${formData.address}
+Appliance: ${formData.appliance}
 Issue Description: ${formData.issue}
-    `;
+  `;
 
-    window.open(`https://wa.me/917419011361?text=${encodeURIComponent(message)}`, '_blank');
-  };
+  // First, share the image if it exists
+  if (formData.image) {
+    // Create a share object
+    const shareData = {
+      files: [formData.image],
+      title: 'Maintenance Request Image',
+      text: message
+    };
+
+    // Check if the browser supports sharing files
+    if (navigator.share && navigator.canShare(shareData)) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    }
+  }
+
+  // Then open WhatsApp with the text message
+  window.open(
+    `https://wa.me/917419011361?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+};
 
   return (
     <div className="container mx-auto px-4 py-16 mt-16">
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Professional Maintenance Services</h1>
-        <p className="text-xl text-gray-600">Hindustan Rent is always committed to serve the customers by providing the most affordable services</p>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          Professional Maintenance Services
+        </h1>
+        <p className="text-xl text-gray-600">
+          Hindustan Rent is always committed to serve the customers by providing
+          the most affordable services
+        </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-12">
@@ -65,7 +120,9 @@ Issue Description: ${formData.issue}
                 <FiShield className="text-blue-600 text-xl" />
                 <div>
                   <p className="font-semibold">90-Day Warranty</p>
-                  <p className="text-sm text-gray-600">On all parts & services</p>
+                  <p className="text-sm text-gray-600">
+                    On all parts & services
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -94,16 +151,31 @@ Issue Description: ${formData.issue}
                 <h3 className="text-xl font-semibold flex items-center gap-2">
                   <FiCheckCircle className="text-green-600" />
                   AC Jet Service
-                  <Badge variant="outline" className="bg-blue-50 text-blue-600">₹599</Badge>
+                  <Badge variant="outline" className="bg-blue-50 text-blue-600">
+                    ₹599
+                  </Badge>
                 </h3>
                 <ul className="mt-2 space-y-1 text-gray-600">
-                  <li>Expert Engineer for better cooling and lower power consumption</li>
+                  <li>
+                    Expert Engineer for better cooling and lower power
+                    consumption
+                  </li>
                   <li>Cleaning of the area post service</li>
-                  <li>Cleaning of AC filters, cooling coil, drain tray and other parts</li>
+                  <li>
+                    Cleaning of AC filters, cooling coil, drain tray and other
+                    parts
+                  </li>
                   <li>Gas pressure check, if required</li>
-                  <li>Pre and post service check of AC controls and functioning</li>
-                  <li>Cleaning of the outdoor unit with water jet for split AC</li>
-                  <li className="text-sm text-red-500">Note: Installation, un-installation and cost of spare parts not covered</li>
+                  <li>
+                    Pre and post service check of AC controls and functioning
+                  </li>
+                  <li>
+                    Cleaning of the outdoor unit with water jet for split AC
+                  </li>
+                  <li className="text-sm text-red-500">
+                    Note: Installation, un-installation and cost of spare parts
+                    not covered
+                  </li>
                 </ul>
               </div>
 
@@ -111,7 +183,12 @@ Issue Description: ${formData.issue}
                 <h3 className="text-xl font-semibold flex items-center gap-2">
                   <FiCheckCircle className="text-green-600" />
                   AC Gas Refilling
-                  <Badge variant="outline" className="bg-green-50 text-green-600">₹1999-2499</Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-green-50 text-green-600"
+                  >
+                    ₹1999-2499
+                  </Badge>
                 </h3>
                 <ul className="mt-2 space-y-1 text-gray-600">
                   <li>Gas charging including repairs for minor leakages</li>
@@ -119,7 +196,10 @@ Issue Description: ${formData.issue}
                   <li>Cost of gas charging included</li>
                   <li>Checking of AC controls and functioning</li>
                   <li>Cleaning of the area post service</li>
-                  <li className="text-sm text-red-500">Note: Cost of spare parts, installation & uninstallation not covered</li>
+                  <li className="text-sm text-red-500">
+                    Note: Cost of spare parts, installation & uninstallation not
+                    covered
+                  </li>
                 </ul>
               </div>
 
@@ -127,7 +207,12 @@ Issue Description: ${formData.issue}
                 <h3 className="text-xl font-semibold flex items-center gap-2">
                   <FiCheckCircle className="text-green-600" />
                   AC AMC Advanced (1 Year)
-                  <Badge variant="outline" className="bg-purple-50 text-purple-600">₹3199</Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-purple-50 text-purple-600"
+                  >
+                    ₹3199
+                  </Badge>
                 </h3>
                 <ul className="mt-2 space-y-1 text-gray-600">
                   <li>2 maintenance services using power jet</li>
@@ -137,7 +222,10 @@ Issue Description: ${formData.issue}
                   <li>Free transportation for repairs</li>
                   <li>Service charge coverage for a year</li>
                   <li>Only for ACs less than 5 years old</li>
-                  <li className="text-sm text-red-500">Note: Cooling coil, condenser coil, installation & un-installation not covered</li>
+                  <li className="text-sm text-red-500">
+                    Note: Cooling coil, condenser coil, installation &
+                    un-installation not covered
+                  </li>
                 </ul>
               </div>
             </CardContent>
@@ -145,7 +233,9 @@ Issue Description: ${formData.issue}
 
           <Card>
             <CardHeader>
-              <h2 className="text-2xl font-semibold">Other Appliance Services</h2>
+              <h2 className="text-2xl font-semibold">
+                Other Appliance Services
+              </h2>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
@@ -160,7 +250,9 @@ Issue Description: ${formData.issue}
                   <li>Complete cleaning of components</li>
                   <li>Temperature setting & defrost</li>
                   <li>Pre and post service check</li>
-                  <li className="text-sm text-red-500">Note: Cost of spare parts not covered</li>
+                  <li className="text-sm text-red-500">
+                    Note: Cost of spare parts not covered
+                  </li>
                 </ul>
               </div>
 
@@ -176,7 +268,10 @@ Issue Description: ${formData.issue}
                   <li>Pre and post service check</li>
                   <li>Assembly and installation</li>
                   <li>Thorough functionality testing</li>
-                  <li className="text-sm text-red-500">Note: Spare parts, chemical cleaning, and relocation not covered</li>
+                  <li className="text-sm text-red-500">
+                    Note: Spare parts, chemical cleaning, and relocation not
+                    covered
+                  </li>
                 </ul>
               </div>
             </CardContent>
@@ -184,7 +279,9 @@ Issue Description: ${formData.issue}
 
           <Card className="bg-gray-50">
             <CardHeader>
-              <h2 className="text-2xl font-semibold">Regular Maintenance Benefits</h2>
+              <h2 className="text-2xl font-semibold">
+                Regular Maintenance Benefits
+              </h2>
             </CardHeader>
             <CardContent className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-white rounded-lg text-center">
@@ -210,52 +307,117 @@ Issue Description: ${formData.issue}
         <Card className="border-blue-100 shadow-lg">
           <CardContent className="p-8">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Schedule Service</h2>
-              <p className="text-gray-600">Fill the form and our expert will contact you within 30 minutes</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                Schedule Service
+              </h2>
+              <p className="text-gray-600">
+                Fill the form and our expert will contact you within 30 minutes
+              </p>
             </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Full Name</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Full Name
+                  </label>
                   <Input
                     placeholder="John Doe"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     className="focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Phone Number</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Phone Number
+                  </label>
                   <Input
                     placeholder="+91 98765 43210"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Service Address</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Service Address
+                  </label>
                   <Input
                     placeholder="Full address with landmark"
                     value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, address: e.target.value })
+                    }
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Service Details</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Select Appliance
+                  </label>
+                  <select
+                    className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+                    value={formData.appliance}
+                    onChange={(e) =>
+                      setFormData({ ...formData, appliance: e.target.value })
+                    }
+                  >
+                    <option value="">-- Select an Appliance --</option>
+                    {appliances.map((appliance, index) => (
+                      <option key={index} value={appliance}>
+                        {appliance}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Service Details
+                  </label>
                   <Input
                     placeholder="Describe appliance and issue"
                     value={formData.issue}
-                    onChange={(e) => setFormData({ ...formData, issue: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, issue: e.target.value })
+                    }
                   />
                 </div>
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="image"
+                    className="block text-sm font-medium mb-2"
+                  >
+                    Upload Image (Optional)
+                  </Label>
+                  <Input
+                    id="image"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="w-full"
+                  />
+                  {formData.image && (
+                    <p className="text-sm text-green-600">
+                      ✓ Image selected: {formData.image.name}
+                    </p>
+                  )}
+                </div>
               </div>
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 h-12 text-lg">
+              <Button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 h-12 text-lg"
+              >
                 Request Service Now
               </Button>
             </form>
             <div className="mt-6 text-center text-sm text-gray-600">
               <p>Or call us directly:</p>
-              <a href="tel:+917419011361" className="text-blue-600 font-semibold hover:underline">
+              <a
+                href="tel:+917419011361"
+                className="text-blue-600 font-semibold hover:underline"
+              >
                 +91 74190 11361
               </a>
             </div>
@@ -264,7 +426,9 @@ Issue Description: ${formData.issue}
       </div>
 
       <div className="mt-16 text-center py-8 bg-gray-50 rounded-xl">
-        <h3 className="text-2xl font-semibold mb-4">Trusted by 5,000+ Happy Customers</h3>
+        <h3 className="text-2xl font-semibold mb-4">
+          Trusted by 5,000+ Happy Customers
+        </h3>
         <div className="flex justify-center gap-6 text-gray-600">
           <span>✓ 24/7 Support</span>
           <span>✓ Same-day Service</span>

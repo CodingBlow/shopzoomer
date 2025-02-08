@@ -165,15 +165,21 @@ export const products = {
     variants: {
       "9Fin": {
         image: ORH,
-        "Full Season (Till 31 March)": 1099,
+        "1": 999,
+        "2": 1998,
+        "Full Season (Till 31 March)": 2200,
       },
       "11Fin": {
         image: ORH2,
-        "Full Season (Till 31 March)": 1299,
+        "1": 1199,
+        "2": 2398,
+        "Full Season (Till 31 March)": 2600,
       },
       "13Fin": {
         image: ORH3,
-        "Full Season (Till 31 March)": 1399,
+        "1": 1299,
+        "2": 2598,
+        "Full Season (Till 31 March)": 2800,
       },
     },
     description: {
@@ -195,9 +201,9 @@ export const products = {
       paymentMode:
         "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
       securityDeposit: {
-        "9Fin": "Security deposit Rs. 2,099/-(refundable) will be extra",
+        "9Fin": "Security deposit Rs. 1,999 /-(refundable) will be extra",
         "11Fin": "Security deposit Rs. 1,999/-(refundable) will be extra",
-        "13Fin": "Security deposit Rs. 1,999/-(refundable) will be extra"
+        "13Fin": "Security deposit Rs. 1,999/-(refundable) will be extra",
       },
       documentation: [
         "Aadhar card submission must for everyone",

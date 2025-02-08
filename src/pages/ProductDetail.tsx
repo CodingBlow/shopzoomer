@@ -78,13 +78,18 @@ export const ProductDetail = () => {
   // Calculate minimum price
   const getMinimumPrice = () => {
     if (!product) return 0;
-    const variant = Object.values(product.variants)[0];
+
+    // Use selected variant or first variant
+    const variant = selectedVariant
+      ? product.variants[selectedVariant]
+      : Object.values(product.variants)[0];
+
     const prices = Object.entries(variant)
-      .filter(([key]) => key !== "image")
+      .filter(([key]) => key !== "image" && key !== "Per")
       .map(([_, price]) => Number(price));
+
     return Math.min(...prices);
   };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -99,31 +104,47 @@ export const ProductDetail = () => {
     .filter(([productId]) => productId !== id)
     .slice(0, 3);
 
+  // Update the handleMonthChange function
   const handleMonthChange = (month: string) => {
     setSelectedMonth(month);
-    const price = Object.values(product.variants)[0][month];
+    // Use the selected variant's price instead of first variant
+    const price = selectedVariant
+      ? product.variants[selectedVariant][month]
+      : Object.values(product.variants)[0][month];
     setPricePerMonth(price);
     setTotalPrice(price * quantity);
   };
 
+  // Update the handleQuantityChange function
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity);
     if (selectedMonth) {
-      const price = Object.values(product.variants)[0][selectedMonth];
+      // Use the selected variant's price instead of first variant
+      const price = selectedVariant
+        ? product.variants[selectedVariant][selectedMonth]
+        : Object.values(product.variants)[0][selectedMonth];
       setPricePerMonth(price);
       setTotalPrice(price * newQuantity);
     }
   };
 
+  // Update the getDurationOptions function
   const getDurationOptions = () => {
-    const variant = Object.values(product.variants)[0];
+    // Use the selected variant's options instead of first variant
+    const variant = selectedVariant
+      ? product.variants[selectedVariant]
+      : Object.values(product.variants)[0];
+  
     return Object.keys(variant)
-      .filter((key) => key !== "image")
+      .filter((key) => key !== "image" && key !== "Per")
       .map((month) => ({
         value: month,
-        label: `${month} months`,
+        label: isNaN(Number(month)) 
+          ? month  // Keep full text for special cases like "Full Season"
+          : `${month} months`  // Add "months" suffix for numeric values
       }));
   };
+  
 
   const isGeyser = id === "geyser";
 
@@ -249,6 +270,11 @@ export const ProductDetail = () => {
                   <h1 className="text-3xl font-bold mb-2 text-gray-900">
                     {product.name}
                   </h1>
+                  {selectedVariant && (
+                    <p className="text-lg text-gray-700 font-medium">
+                      Selected Variant: {selectedVariant}
+                    </p>
+                  )}
                   {!selectedMonth && !isGeyser && (
                     <p className="text-lg text-primary font-semibold mb-4">
                       Starting from ₹{getMinimumPrice()}/month
