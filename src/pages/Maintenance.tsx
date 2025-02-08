@@ -26,12 +26,14 @@ export const Maintenance = () => {
   });
 
   const appliances = [
-    "Air Conditioner",
+    "Window Air Conditioner",
+    "Split Air Conditioner",
     "Refrigerator",
     "Washing Machine",
     "Room Heater",
-    "Microwave",
-    "Water Purifier",
+    "Geyser",
+    "Ro Water Purifier",
+    "Inverter",
   ];
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
