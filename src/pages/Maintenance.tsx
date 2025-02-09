@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,6 +14,13 @@ import {
   FiCheckCircle,
 } from "react-icons/fi";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const Maintenance = () => {
   const { toast } = useToast();
@@ -56,12 +64,12 @@ export const Maintenance = () => {
     }
   
     let message = `
-  Maintenance Request:
-  Name: ${formData.name}
-  Phone: ${formData.phone}
-  Address: ${formData.address}
-  Appliance: ${formData.appliance}
-  Issue Description: ${formData.issue}
+Maintenance Request:
+Name: ${formData.name}
+Phone: ${formData.phone}
+Address: ${formData.address}
+Appliance: ${formData.appliance}
+Issue Description: ${formData.issue}
     `;
   
     // Create a WhatsApp intent with both image and text
@@ -82,8 +90,22 @@ export const Maintenance = () => {
         "_blank"
       );
     }
+
+    // Reset form after submission
+    setFormData({
+      name: "",
+      phone: "",
+      address: "",
+      appliance: "",
+      issue: "",
+      image: null,
+    });
+
+    toast({
+      title: "Success",
+      description: "Your maintenance request has been sent successfully!",
+    });
   };
-  
 
   return (
     <div className="container mx-auto px-4 py-16 mt-16">
@@ -314,71 +336,78 @@ export const Maintenance = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <Label htmlFor="name" className="block text-sm font-medium mb-2">
                     Full Name
-                  </label>
+                  </Label>
                   <Input
-                    placeholder="John Doe"
+                    id="name"
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
                     className="focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter your full name"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <Label htmlFor="phone" className="block text-sm font-medium mb-2">
                     Phone Number
-                  </label>
+                  </Label>
                   <Input
-                    placeholder="+91 98765 43210"
+                    id="phone"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
                     }
+                    placeholder="Enter your phone number"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <Label htmlFor="address" className="block text-sm font-medium mb-2">
                     Service Address
-                  </label>
+                  </Label>
                   <Input
-                    placeholder="Full address with landmark"
+                    id="address"
                     value={formData.address}
                     onChange={(e) =>
                       setFormData({ ...formData, address: e.target.value })
                     }
+                    placeholder="Enter your complete address"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
+                  <Label htmlFor="appliance" className="block text-sm font-medium mb-2">
                     Select Appliance
-                  </label>
-                  <select
-                    className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+                  </Label>
+                  <Select
                     value={formData.appliance}
-                    onChange={(e) =>
-                      setFormData({ ...formData, appliance: e.target.value })
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, appliance: value })
                     }
                   >
-                    <option value="">-- Select an Appliance --</option>
-                    {appliances.map((appliance, index) => (
-                      <option key={index} value={appliance}>
-                        {appliance}
-                      </option>
-                    ))}
-                  </select>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select an appliance" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {appliances.map((appliance) => (
+                        <SelectItem key={appliance} value={appliance}>
+                          {appliance}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Service Details
-                  </label>
+                  <Label htmlFor="issue" className="block text-sm font-medium mb-2">
+                    Issue Description
+                  </Label>
                   <Input
-                    placeholder="Describe appliance and issue"
+                    id="issue"
                     value={formData.issue}
                     onChange={(e) =>
                       setFormData({ ...formData, issue: e.target.value })
                     }
+                    placeholder="Describe the issue with your appliance"
                   />
                 </div>
                 <div className="space-y-2">
