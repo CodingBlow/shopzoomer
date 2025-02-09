@@ -37,4 +37,4 @@ export const Products = () => {
       </div>
     </section>
   );
-});
+};
