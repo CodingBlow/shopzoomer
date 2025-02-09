@@ -1,8 +1,12 @@
+
 import { Link } from "react-router-dom";
 import { products } from "@/data/products";
 import { Card, CardContent } from "@/components/ui/card";
+import { MaintenanceDialog } from "./MaintenanceDialog";
 
 export const Products = () => {
+  const maintenanceProducts = ["geyser", "washing-machine", "refrigerator"];
+
   return (
     <section className="py-11 container mx-auto px-4" id="products">
       <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
@@ -19,6 +23,11 @@ export const Products = () => {
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-1 text-gray-800">{product.name}</h3>
+                {maintenanceProducts.includes(id) && (
+                  <div onClick={(e) => e.preventDefault()} className="mt-2">
+                    <MaintenanceDialog productName={product.name} />
+                  </div>
+                )}
               </CardContent>
             </Card>
           </Link>
