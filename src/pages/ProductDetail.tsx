@@ -277,7 +277,7 @@ export const ProductDetail = () => {
                   )}
                   {!selectedMonth && !isGeyser && (
                     <p className="text-lg text-primary font-semibold mb-4">
-                      Starting from ₹{getMinimumPrice()}/month
+                      Starting from ₹{getMinimumPrice()}
                     </p>
                   )}
                 </div>

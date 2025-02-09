@@ -165,19 +165,16 @@ export const products = {
     variants: {
       "9Fin": {
         image: ORH,
-        "1": 999,
         "2": 1998,
         "Full Season (Till 31 March)": 2200,
       },
       "11Fin": {
         image: ORH2,
-        "1": 1199,
         "2": 2398,
         "Full Season (Till 31 March)": 2600,
       },
       "13Fin": {
         image: ORH3,
-        "1": 1299,
         "2": 2598,
         "Full Season (Till 31 March)": 2800,
       },

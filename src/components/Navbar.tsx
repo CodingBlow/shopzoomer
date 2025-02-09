@@ -72,7 +72,7 @@ export const Navbar = () => {
           to="/maintenance"
           className="px-2 lg:px-3 py-2 text-sm lg:text-base text-white hover:bg-white hover:text-[#0416c7] font-medium rounded-md transition-colors duration-200"
         >
-          Maintenance
+           Service & Repair
         </Link>
   
         <Link
@@ -124,7 +124,7 @@ export const Navbar = () => {
                 Oil Heater
               </Link>
               <Link to="/maintenance" className="text-base text-white hover:text-gray-200 font-medium">
-                Maintenance
+              Service & Repair
               </Link>
               <Link to="tel:+917419011361" className="text-base text-white hover:text-gray-200 font-medium flex items-center">
                 <Phone className="h-4 w-4 mr-2" />

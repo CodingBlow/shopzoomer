@@ -27,7 +27,7 @@ export const Products = () => {
               ) : (
                 <Link to={`/product/${id}/variants`} className="block w-full">
                   <button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 rounded-md">
-                    View Details
+                    Rent Now
                   </button>
                 </Link>
               )}
