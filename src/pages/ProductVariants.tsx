@@ -1,11 +1,14 @@
+
 import { useParams, Link } from "react-router-dom";
 import { products } from "@/data/products";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { MaintenanceDialog } from "@/components/MaintenanceDialog";
 
 export const ProductVariants = () => {
   const { id } = useParams<{ id: string }>();
   const product = products[id as keyof typeof products];
+  const maintenanceProducts = ["geyser", "washing-machine", "refrigerator"];
 
   if (!product) return <div>Product not found</div>;
 
@@ -18,7 +21,7 @@ export const ProductVariants = () => {
           const minPrice = Math.min(...prices.map(([_, price]) => Number(price)));
           return (
             <div key={variant} className="w-full md:w-1/3 lg:w-1/4 px-2 mb-4">
-              <Card className="hover:scale-105 transition-transform flex flex-col items-center justify-between">
+              <Card className="hover:scale-105 transition-transform flex flex-col items-center justify-between h-full">
                 <CardContent className="p-3 flex flex-col items-center">
                   <div className="w-full flex items-center justify-center h-52">
                     <img
@@ -32,20 +35,15 @@ export const ProductVariants = () => {
                     Starting from ₹{minPrice}
                   </p>
                 </CardContent>
-                <CardFooter className="p-2">
-                  {id === "geyser" ? (
-                    <Link to="/maintenance" className="w-full">
-                      <Button className="w-full text-xs py-1">
-                        Maintenance
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Link to={`/product/${id}/buy?variant=${variant}`} className="w-full">
-                      <Button className="w-full text-xs py-1">
-                        Rent Now
-                      </Button>
-                    </Link>
+                <CardFooter className="p-2 w-full flex flex-col gap-2">
+                  {maintenanceProducts.includes(id as string) && (
+                    <MaintenanceDialog productName={product.name} />
                   )}
+                  <Link to={`/product/${id}/buy?variant=${variant}`} className="w-full">
+                    <Button className="w-full text-xs py-1">
+                      Rent Now
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             </div>
