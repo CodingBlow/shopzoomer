@@ -3,7 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import { products } from "@/data/products";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MaintenanceDialog } from "@/components/MaintenanceDialog";
 
 export const ProductVariants = () => {
   const { id } = useParams<{ id: string }>();
@@ -31,13 +30,19 @@ export const ProductVariants = () => {
                     />
                   </div>
                   <h3 className="text-base font-medium mt-3 mb-1">{variant}</h3>
-                  <p className="text-sm text-gray-600">
-                    Starting from ₹{minPrice}
-                  </p>
+                  {!maintenanceProducts.includes(id as string) && (
+                    <p className="text-sm text-gray-600">
+                      Starting from ₹{minPrice}
+                    </p>
+                  )}
                 </CardContent>
                 <CardFooter className="p-2 w-full">
                   {maintenanceProducts.includes(id as string) ? (
-                    <MaintenanceDialog productName={product.name} />
+                    <Link to="/maintenance" className="w-full">
+                      <Button className="w-full text-xs py-1">
+                        Maintenance
+                      </Button>
+                    </Link>
                   ) : (
                     <Link to={`/product/${id}/buy?variant=${variant}`} className="w-full">
                       <Button className="w-full text-xs py-1">
