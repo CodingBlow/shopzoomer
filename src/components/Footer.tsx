@@ -103,7 +103,7 @@ export const Footer = () => {
               <li>Email: Hindustanrent@gmail.com</li>
               <li>Phone: +91 7419011361</li>
               <li>Phone: +91 7419011362</li>
-              <li>Address: Gurugram</li>
+              <li>Address: Sikandarpur Ghosi ,H -Block, DLF Phase -122002</li>
             </ul>
           </div>
         </div>
