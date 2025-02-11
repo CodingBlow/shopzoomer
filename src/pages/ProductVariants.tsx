@@ -35,15 +35,16 @@ export const ProductVariants = () => {
                     Starting from ₹{minPrice}
                   </p>
                 </CardContent>
-                <CardFooter className="p-2 w-full flex flex-col gap-2">
-                  {maintenanceProducts.includes(id as string) && (
+                <CardFooter className="p-2 w-full">
+                  {maintenanceProducts.includes(id as string) ? (
                     <MaintenanceDialog productName={product.name} />
+                  ) : (
+                    <Link to={`/product/${id}/buy?variant=${variant}`} className="w-full">
+                      <Button className="w-full text-xs py-1">
+                        Rent Now
+                      </Button>
+                    </Link>
                   )}
-                  <Link to={`/product/${id}/buy?variant=${variant}`} className="w-full">
-                    <Button className="w-full text-xs py-1">
-                      Rent Now
-                    </Button>
-                  </Link>
                 </CardFooter>
               </Card>
             </div>
