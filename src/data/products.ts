@@ -23,7 +23,7 @@ import WM2 from "../images/WM2.jpg";
 
 export const products = {
   "window-ac": {
-    name: "Window AC",
+    name: "Window AC On Rent",
     image: WindowM,
     variants: {
       "1.0 TON": {
@@ -91,7 +91,7 @@ export const products = {
     },
   },
   "split-ac": {
-    name: "Split AC",
+    name: "Split AC On Rent",
     image: SACM,
     variants: {
       "1.0 TON": {
@@ -160,7 +160,7 @@ export const products = {
   },
 
   "room-heater": {
-    name: "Room Heater",
+    name: "Room Heater On Rent",
     image: ORHM,
     variants: {
       "9Fin": {
@@ -228,7 +228,7 @@ export const products = {
   },
 
   geyser: {
-    name: "Geyser",
+    name: "Geyser Maintainance",
     image: GeyserM,
     variants: {
       "15L - 20L": {
@@ -275,7 +275,7 @@ export const products = {
     },
   },
   refrigerator: {
-    name: "Refrigerator",
+    name: "Refrigerator Maintainance",
     image: RefM,
     variants: {
       "150-220L": {
@@ -339,7 +339,7 @@ export const products = {
     },
   },
   "washing-machine": {
-    name: "Washing Machine",
+    name: "Washing Machine Maintainance",
     image: WMM,
     variants: {
       "semi-automatic": {
