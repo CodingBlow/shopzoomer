@@ -91,7 +91,6 @@ export const Footer = () => {
                   className="text-gray-300 hover:text-white"
                 >
                   Maintenance
-
                 </Link>
               </li>
             </ul>
@@ -122,8 +121,7 @@ export const Footer = () => {
             68, Sector 69, Sector 70, Sector 70A, Sector 71, Sector 72, Sector
             73, Sector 74, Sector 77, Sector 78, Sector 79A, Sector 79B, Sector
             80, Sikandarpur, South City DLF City, Sohna Road, Sushant Lok, Palam
-            Vihar, MG Road, South City, Ardee City, Golf Course Road, Manesar
-            and South Delhi.
+            Vihar, MG Road, South City, Ardee City, Golf Course Road, Manesar.
           </p>
         </div>
 
