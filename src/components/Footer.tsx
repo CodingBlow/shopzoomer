@@ -101,7 +101,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-300">
               <li>Email: Hindustanrent@gmail.com</li>
               <li>Phone: +91 7419011361</li>
-              <li>Phone: +91 7419011362</li>
+              <li>Phone: +91 7419011364</li>
               <li>Address: Sikandarpur Ghosi ,H -Block, DLF Phase -122002</li>
             </ul>
           </div>
