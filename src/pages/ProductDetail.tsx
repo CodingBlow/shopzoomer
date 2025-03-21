@@ -48,7 +48,8 @@ export const ProductDetail = () => {
 
   const [selectedMonth, setSelectedMonth] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [deliveryDate, setDeliveryDate] = useState<Date>();
+  const [deliveryDate, setDeliveryDate] = useState<Date | undefined>();
+  const [open, setOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -318,14 +319,13 @@ export const ProductDetail = () => {
                     </div>
 
                     <div className="bg-white p-4 rounded-lg border border-gray-200">
-                      <Popover>
+                      <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                           <Button
                             variant="outline"
-                            className={cn(
-                              "w-full justify-start text-left font-normal bg-white",
-                              !deliveryDate && "text-muted-foreground"
-                            )}
+                            className={`w-full justify-start text-left font-normal bg-white ${
+                              !deliveryDate ? "text-muted-foreground" : ""
+                            }`}
                           >
                             <CalendarIcon className="mr-2 h-4 w-4" />
                             {deliveryDate
@@ -337,7 +337,10 @@ export const ProductDetail = () => {
                           <Calendar
                             mode="single"
                             selected={deliveryDate}
-                            onSelect={setDeliveryDate}
+                            onSelect={(date) => {
+                              setDeliveryDate(date);
+                              setOpen(false); // Close popover after selecting date
+                            }}
                             disabled={(date) => date < new Date()}
                           />
                         </PopoverContent>
