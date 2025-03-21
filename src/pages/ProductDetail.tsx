@@ -134,17 +134,16 @@ export const ProductDetail = () => {
     const variant = selectedVariant
       ? product.variants[selectedVariant]
       : Object.values(product.variants)[0];
-  
+
     return Object.keys(variant)
       .filter((key) => key !== "image" && key !== "Per")
       .map((month) => ({
         value: month,
-        label: isNaN(Number(month)) 
-          ? month  // Keep full text for special cases like "Full Season"
-          : `${month} months`  // Add "months" suffix for numeric values
+        label: isNaN(Number(month))
+          ? month // Keep full text for special cases like "Full Season"
+          : `${month} months`, // Add "months" suffix for numeric values
       }));
   };
-  
 
   const isGeyser = id === "geyser";
 
@@ -222,6 +221,7 @@ export const ProductDetail = () => {
   Duration: ${selectedMonth} months
   Quantity: ${quantity}
   Total Price: ₹${totalPrice}
+  Selected Variant: ${selectedVariant}
   Security Deposit: ${getSecurityDeposit()}
   Delivery Date: ${format(deliveryDate, "PPP")}
   

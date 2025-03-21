@@ -28,30 +28,21 @@ export const products = {
     variants: {
       "1.0 TON": {
         image: Window,
-        "3": 4999,
-        "4": 5699,
-        "5": 6299,
-        "6": 6688,
-        "9": 7200,
-        "12": 7500,
+        "4": 5999,
+        "6": 6899,
+        "full season": 7500,
       },
       "1.5 TON": {
         image: Window2,
-        "3": 5599,
-        "4": 6399,
-        "5": 7199,
+        "4": 6699,
         "6": 7799,
-        "9": 7999,
-        "12": 8400,
+        "full season": 8400,
       },
       "2.0 TON": {
         image: Window3,
-        "3": 5699,
-        "4": 6499,
-        "5": 7399,
+        "4": 6899,
         "6": 7999,
-        "9": 8299,
-        "12": 8799,
+        "full season": 8799,
       },
     },
     description: {
@@ -65,7 +56,7 @@ export const products = {
       paymentMode:
         "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
       securityDeposit:
-        "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+        "Security deposit Rs. 1,999/-(refundable) will be extra and it will be returned back at the time of pickup",
       documentation: [
         "Aadhar card submission must for everyone",
         "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
@@ -96,30 +87,21 @@ export const products = {
     variants: {
       "1.0 TON": {
         image: SAC,
-        "3": 7047,
         "4": 7696,
-        "5": 8745,
         "6": 10999,
-        "9": 11299,
-        "12": 11499,
+        "full season": 11499,
       },
       "1.5 TON": {
         image: SAC2,
-        "3": 7797,
         "4": 8696,
-        "5": 9995,
         "6": 11999,
-        "9": 12299,
-        "12": 12499,
+        "full season": 12499,
       },
       "2.0 TON": {
         image: SAC3,
-        "3": 8298,
         "4": 9364,
-        "5": 10830,
         "6": 12999,
-        "9": 13299,
-        "12": 13499,
+        "full season": 13499,
       },
     },
     description: {
@@ -133,7 +115,7 @@ export const products = {
       paymentMode:
         "Accepted as Online Google Pay, Phonepe, UPI, Net banking and Cash etc",
       securityDeposit:
-        "Security deposit Rs. 2,000/-(refundable) will be extra and it will be returned back at the time of pickup",
+        "Security deposit Rs. 1,999/-(refundable) will be extra and it will be returned back at the time of pickup",
       documentation: [
         "Aadhar card submission must for everyone",
         "Govt ID card, Bank statement, Company name, GST number, DL Selfie etc (Any two Id need)",
