@@ -35,14 +35,14 @@ export const products = {
       "1.5 TON": {
         image: Window2,
         "4": 6699,
-        "6": 7799,
-        "full season": 8400,
+        "6": 8300,
+        "full season": 8700,
       },
       "2.0 TON": {
         image: Window3,
         "4": 6899,
-        "6": 7999,
-        "full season": 8799,
+        "6": 9000,
+        "full season": 9500,
       },
     },
     description: {
